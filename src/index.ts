@@ -36,10 +36,10 @@ import { loadWebState, saveWebState, fetchSiteContent, type WebFetchResult } fro
 const CLI_REPOS: RepoConfig[] = [
   { id: "claude-code", repo: "anthropics/claude-code",   name: "Claude Code"   },
   { id: "codex",       repo: "openai/codex",             name: "OpenAI Codex"  },
-  { id: "gemini-cli",  repo: "google-gemini/gemini-cli", name: "Gemini CLI"    },
-  { id: "kimi-cli",    repo: "MoonshotAI/kimi-cli",      name: "Kimi Code CLI" },
+  // { id: "gemini-cli",  repo: "google-gemini/gemini-cli", name: "Gemini CLI"    },
+  // { id: "kimi-cli",    repo: "MoonshotAI/kimi-cli",      name: "Kimi Code CLI" },
   { id: "opencode",    repo: "anomalyco/opencode",       name: "OpenCode"      },
-  { id: "qwen-code",   repo: "QwenLM/qwen-code",         name: "Qwen Code"     },
+  // { id: "qwen-code",   repo: "QwenLM/qwen-code",         name: "Qwen Code"     },
 ];
 
 /** OpenClaw — high-volume project tracked separately with its own prompt. */
@@ -52,15 +52,15 @@ const OPENCLAW: RepoConfig = {
 
 /** Peer projects in the personal AI assistant / agent space — tracked for cross-ecosystem comparison. */
 const OPENCLAW_PEERS: RepoConfig[] = [
-  { id: "zeroclaw",  repo: "zeroclaw-labs/zeroclaw",   name: "Zeroclaw"  },
-  { id: "easyclaw",  repo: "gaoyangz77/easyclaw",       name: "EasyClaw"  },
-  { id: "lobsterai", repo: "netease-youdao/LobsterAI",  name: "LobsterAI" },
-  { id: "zeptoclaw", repo: "qhkm/zeptoclaw",            name: "ZeptoClaw" },
-  { id: "nanobot",   repo: "HKUDS/nanobot",             name: "NanoBot",  paginated: true },
+  // { id: "zeroclaw",  repo: "zeroclaw-labs/zeroclaw",   name: "Zeroclaw"  },
+  // { id: "easyclaw",  repo: "gaoyangz77/easyclaw",       name: "EasyClaw"  },
+  // { id: "lobsterai", repo: "netease-youdao/LobsterAI",  name: "LobsterAI" },
+  // { id: "zeptoclaw", repo: "qhkm/zeptoclaw",            name: "ZeptoClaw" },
+  // { id: "nanobot",   repo: "HKUDS/nanobot",             name: "NanoBot",  paginated: true },
   { id: "picoclaw",  repo: "sipeed/picoclaw",            name: "PicoClaw", paginated: true },
   { id: "nanoclaw",  repo: "qwibitai/nanoclaw",          name: "NanoClaw"  },
-  { id: "ironclaw",  repo: "nearai/ironclaw",            name: "IronClaw"  },
-  { id: "tinyclaw",  repo: "TinyAGI/tinyclaw",           name: "TinyClaw"  },
+  // { id: "ironclaw",  repo: "nearai/ironclaw",            name: "IronClaw"  },
+  // { id: "tinyclaw",  repo: "TinyAGI/tinyclaw",           name: "TinyClaw"  },
 ];
 
 /** Claude Code Skills — trending skills tracked separately, no date filter. */
@@ -82,7 +82,7 @@ function requireEnv(name: string): string {
 
 async function main(): Promise<void> {
   requireEnv("GITHUB_TOKEN");
-  requireEnv("ANTHROPIC_API_KEY");
+  // requireEnv("ANTHROPIC_API_KEY");
 
   const now     = new Date();
   const since   = new Date(now.getTime() - 24 * 60 * 60 * 1000);
@@ -142,7 +142,7 @@ async function main(): Promise<void> {
         const hasData = issues.length || prs.length || releases.length;
         if (!hasData) {
           console.log(`  [${cfg.id}] No activity, skipping LLM call`);
-          return { config: cfg, issues, prs, releases, summary: "过去24小时无活动。" };
+          return { config: cfg, issues, prs, releases, summary: "No activity in the past 24 hours." };
         }
         console.log(`  [${cfg.id}] Calling LLM for summary...`);
         try {
@@ -150,7 +150,7 @@ async function main(): Promise<void> {
           return { config: cfg, issues, prs, releases, summary };
         } catch (err) {
           console.error(`  [${cfg.id}] LLM call failed: ${err}`);
-          return { config: cfg, issues, prs, releases, summary: "⚠️ 摘要生成失败。" };
+          return { config: cfg, issues, prs, releases, summary: "⚠️ Summary generation failed." };
         }
       }),
     ),
@@ -159,14 +159,14 @@ async function main(): Promise<void> {
       const hasData = issues.length || prs.length || releases.length;
       if (!hasData) {
         console.log(`  [openclaw] No activity, skipping LLM call`);
-        return "过去24小时无活动。";
+        return "No activity in the past 24 hours.";
       }
       console.log(`  [openclaw] Calling LLM for OpenClaw report...`);
       try {
         return await callLlm(buildPeerPrompt(cfg, issues, prs, releases, dateStr, 50, 30));
       } catch (err) {
         console.error(`  [openclaw] LLM call failed: ${err}`);
-        return "⚠️ 摘要生成失败。";
+        return "⚠️ Summary generation failed.";
       }
     })(),
     (async () => {
@@ -175,7 +175,7 @@ async function main(): Promise<void> {
         return await callLlm(buildSkillsPrompt(skillsData.prs, skillsData.issues, dateStr));
       } catch (err) {
         console.error(`  [claude-code-skills] LLM call failed: ${err}`);
-        return "⚠️ Skills 摘要生成失败。";
+        return "⚠️ Skills summary generation failed.";
       }
     })(),
     Promise.all(
@@ -183,7 +183,7 @@ async function main(): Promise<void> {
         const hasData = issues.length || prs.length || releases.length;
         if (!hasData) {
           console.log(`  [${cfg.id}] No activity, skipping LLM call`);
-          return { config: cfg, issues, prs, releases, summary: "过去24小时无活动。" };
+          return { config: cfg, issues, prs, releases, summary: "No activity in the past 24 hours." };
         }
         console.log(`  [${cfg.id}] Calling LLM for peer summary...`);
         try {
@@ -191,7 +191,7 @@ async function main(): Promise<void> {
                    summary: await callLlm(buildPeerPrompt(cfg, issues, prs, releases, dateStr)) };
         } catch (err) {
           console.error(`  [${cfg.id}] LLM call failed: ${err}`);
-          return { config: cfg, issues, prs, releases, summary: "⚠️ 摘要生成失败。" };
+          return { config: cfg, issues, prs, releases, summary: "⚠️ Summary generation failed." };
         }
       }),
     ),
@@ -226,7 +226,7 @@ async function main(): Promise<void> {
     .map((d) => {
       // For Claude Code, prepend the skills section at the top of the details block
       const skillsSection = d.config.id === "claude-code"
-        ? `## Claude Code Skills 社区热点\n\n> 数据来源: [anthropics/skills](https://github.com/${CLAUDE_SKILLS_REPO})\n\n${skillsSummary}\n\n---\n\n`
+        ? `## Claude Code Skills Community Highlights\n\n> Data source: [anthropics/skills](https://github.com/${CLAUDE_SKILLS_REPO})\n\n${skillsSummary}\n\n---\n\n`
         : "";
       return [
         `<details>`,
@@ -240,14 +240,14 @@ async function main(): Promise<void> {
     .join("\n\n");
 
   const digestContent =
-    `# AI CLI 工具社区动态日报 ${dateStr}\n\n` +
-    `> 生成时间: ${utcStr} UTC | 覆盖工具: ${cliDigests.length} 个\n\n` +
+    `# AI CLI Tools Community Digest ${dateStr}\n\n` +
+    `> Generated: ${utcStr} UTC | Tools tracked: ${cliDigests.length}\n\n` +
     `${repoLinks}\n\n` +
     `---\n\n` +
-    `## 横向对比\n\n` +
+    `## Cross-Tool Comparison\n\n` +
     comparison +
     `\n\n---\n\n` +
-    `## 各工具详细报告\n\n` +
+    `## Per-Tool Detailed Reports\n\n` +
     toolSections +
     footer;
 
@@ -275,17 +275,17 @@ async function main(): Promise<void> {
     .join("\n\n");
 
   const openclawContent =
-    `# OpenClaw 生态日报 ${dateStr}\n\n` +
-    `> Issues: ${ocIssues.length} | PRs: ${ocPrs.length} | 覆盖项目: ${1 + OPENCLAW_PEERS.length} 个 | 生成时间: ${utcStr} UTC\n\n` +
+    `# OpenClaw Ecosystem Digest ${dateStr}\n\n` +
+    `> Issues: ${ocIssues.length} | PRs: ${ocPrs.length} | Projects tracked: ${1 + OPENCLAW_PEERS.length} | Generated: ${utcStr} UTC\n\n` +
     `${peersRepoLinks}\n\n` +
     `---\n\n` +
-    `## OpenClaw 项目深度报告\n\n` +
+    `## OpenClaw Deep Report\n\n` +
     openclawSummary +
     `\n\n---\n\n` +
-    `## 横向生态对比\n\n` +
+    `## Cross-Ecosystem Comparison\n\n` +
     peersComparison +
     `\n\n---\n\n` +
-    `## 同赛道项目详细报告\n\n` +
+    `## Peer Project Detailed Reports\n\n` +
     peerDetailSections +
     footer;
 
@@ -301,19 +301,19 @@ async function main(): Promise<void> {
     try {
       const webSummary = await callLlm(buildWebReportPrompt(webResults, dateStr), 8192);
       const isFirstRun = webResults.some((r) => r.isFirstRun);
-      const mode = isFirstRun ? "首次全量" : "今日更新";
+      const mode = isFirstRun ? "First-run full crawl" : "Incremental update";
       const totalNew = webResults.reduce((sum, r) => sum + r.newItems.length, 0);
 
       const webContent =
-        `# AI 官方内容追踪报告 ${dateStr}\n\n` +
-        `> ${mode} | 新增内容: ${totalNew} 篇 | 生成时间: ${utcStr} UTC\n\n` +
-        `数据来源:\n` +
+        `# AI Official Content Tracker Report ${dateStr}\n\n` +
+        `> ${mode} | New articles: ${totalNew} | Generated: ${utcStr} UTC\n\n` +
+        `Data sources:\n` +
         `- Anthropic: [anthropic.com](https://www.anthropic.com) — ` +
-          `新增 ${webResults.find((r) => r.site === "anthropic")?.newItems.length ?? 0} 篇` +
-          `（sitemap 共 ${webResults.find((r) => r.site === "anthropic")?.totalDiscovered ?? 0} 条）\n` +
+          `${webResults.find((r) => r.site === "anthropic")?.newItems.length ?? 0} new articles` +
+          ` (${webResults.find((r) => r.site === "anthropic")?.totalDiscovered ?? 0} total in sitemap)\n` +
         `- OpenAI: [openai.com](https://openai.com) — ` +
-          `新增 ${webResults.find((r) => r.site === "openai")?.newItems.length ?? 0} 篇` +
-          `（sitemap 共 ${webResults.find((r) => r.site === "openai")?.totalDiscovered ?? 0} 条）\n\n` +
+          `${webResults.find((r) => r.site === "openai")?.newItems.length ?? 0} new articles` +
+          ` (${webResults.find((r) => r.site === "openai")?.totalDiscovered ?? 0} total in sitemap)\n\n` +
         `---\n\n` +
         webSummary +
         footer;
@@ -323,7 +323,7 @@ async function main(): Promise<void> {
 
       if (digestRepo) {
         const webUrl = await createGitHubIssue(
-          `🌐 AI 官方内容追踪报告 ${dateStr}${isFirstRun ? "（首次全量）" : ""}`,
+          `🌐 AI Official Content Tracker ${dateStr}${isFirstRun ? " (first-run full crawl)" : ""}`,
           webContent,
           "web",
         );
@@ -343,10 +343,10 @@ async function main(): Promise<void> {
   // ── 7. Create GitHub issues (CLI + OpenClaw) ────────────────────────────────
 
   if (digestRepo) {
-    const cliUrl = await createGitHubIssue(`📊 AI CLI 工具社区动态日报 ${dateStr}`, digestContent, "digest");
+    const cliUrl = await createGitHubIssue(`📊 AI CLI Tools Community Digest ${dateStr}`, digestContent, "digest");
     console.log(`  Created CLI issue: ${cliUrl}`);
 
-    const openclawUrl = await createGitHubIssue(`🦞 OpenClaw 生态日报 ${dateStr}`, openclawContent, "openclaw");
+    const openclawUrl = await createGitHubIssue(`🦞 OpenClaw Ecosystem Digest ${dateStr}`, openclawContent, "openclaw");
     console.log(`  Created OpenClaw issue: ${openclawUrl}`);
   }
 

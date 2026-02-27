@@ -1,138 +1,138 @@
-# OpenClaw 项目动态日报 2026-02-23
+# OpenClaw Project Daily Digest 2026-02-23
 
-> 数据来源: [openclaw/openclaw](https://github.com/openclaw/openclaw) | Issues: 500 | PRs: 500 | 生成时间: 2026-02-23 13:19 UTC
+> Data source: [openclaw/openclaw](https://github.com/openclaw/openclaw) | Issues: 500 | PRs: 500 | Generated: 2026-02-23 13:19 UTC
 
-# OpenClaw 项目动态日报 | 2026-02-23
+# OpenClaw Project Daily Digest | 2026-02-23
 
-## 1. 今日速览
+## 1. Today at a Glance
 
-OpenClaw 今日呈现**极高活跃度**，24小时内 Issues 更新 500 条（新开/活跃 247，关闭 253），PR 更新 500 条（待合并 366，已合并/关闭 134），版本发布 1 个。社区聚焦于 **v2026.2.22 版本的适配问题**——大量用户反馈 Chrome 扩展浏览器中继认证变更（HMAC 派生令牌）、Telegram/WhatsApp 等频道插件加载异常、以及 Windows 环境下的配置验证问题。同时，Mistral 提供商支持正式上线，多语言内存搜索扩展（土耳其语、丹麦语等）持续推进。项目整体健康度良好，但需关注版本发布后的回归问题处理效率。
+OpenClaw showed **extremely high activity** today, with 500 Issue updates in 24 hours (247 new/active, 253 closed), 500 PR updates (366 pending merge, 134 merged/closed), and 1 version release. The community focused on **v2026.2.22 version adaptation issues** — numerous users reported Chrome extension browser relay authentication changes (HMAC-derived tokens), Telegram/WhatsApp and other channel plugin loading failures, and Windows environment configuration validation issues. Meanwhile, Mistral provider support officially launched, and multi-language memory search expansion (Turkish, Danish, etc.) continued to progress. Overall project health is good, but attention is needed on regression issue handling efficiency after the release.
 
 ---
 
-## 2. 版本发布
+## 2. Version Releases
 
 ### v2026.2.22: openclaw 2026.2.22
-**发布链接**: https://github.com/openclaw/openclaw/releases/tag/v2026.2.22
+**Release link**: https://github.com/openclaw/openclaw/releases/tag/v2026.2.22
 
-| 变更项 | 详情 |
+| Change Item | Details |
 |--------|------|
-| **新增功能** | **Mistral 提供商支持** (#23845) — 包含内存嵌入和语音支持 |
-| **核心更新** | 新增可选内置自动更新器 (`update.auto.*`)，默认关闭，支持稳定版延迟+抖动和测试版每小时检查 |
-| **破坏性变更** | **浏览器扩展中继认证机制变更** — 从原始网关令牌改为 HMAC-SHA256 派生令牌，导致大量用户配置失效 |
-| **迁移注意** | 用户需在 Chrome 扩展选项页重新配置令牌，或等待后续 PR 恢复向后兼容（见 #24489, #24436） |
+| **New Feature** | **Mistral provider support** (#23845) — includes memory embedding and voice support |
+| **Core Update** | New optional built-in auto-updater (`update.auto.*`), disabled by default, supports stable release delay+jitter and beta hourly checks |
+| **Breaking Change** | **Browser extension relay authentication mechanism change** — switched from raw gateway token to HMAC-SHA256 derived token, causing many users' configurations to become invalid |
+| **Migration Note** | Users need to reconfigure tokens on the Chrome extension options page, or wait for subsequent PR to restore backward compatibility (see #24489, #24436) |
 
 ---
 
-## 3. 项目进展
+## 3. Project Progress
 
-### 今日合并/关闭的重要 PR
+### Important PRs Merged/Closed Today
 
-| PR | 作者 | 核心贡献 | 项目推进 |
+| PR | Author | Core Contribution | Project Advancement |
 |:---|:---|:---|:---|
-| [#24479](https://github.com/openclaw/openclaw/pull/24479) | @merc1305 | **安全修复**: 在动态配置路径中脱敏敏感密钥（`env.GROQ_API_KEY` 等） | 解决 `config.get` 泄露 API 密钥问题，提升安全基线 |
-| [#24471](https://github.com/openclaw/openclaw/pull/24471) | @gitwithuli | **国际化**: 添加土耳其语停用词过滤，扩展内存搜索多语言支持 | 内存搜索覆盖语言增至 6 种（西/葡/日/韩/阿/土） |
-| [#24335](https://github.com/openclaw/openclaw/pull/24335) | @Kay-051 | **修复**: 防止 `thinking=low` 时推理内容泄露到 WhatsApp/Telegram | 解决 #24290 回归问题，提升消息隐私 |
-| [#24413](https://github.com/openclaw/openclaw/pull/24413) | @justinhuangcode | **修复**: 停止将 macOS 菜单栏应用误识别为竞争网关服务 | 消除 #23846 误报，改善 macOS 用户体验 |
-| [#24485](https://github.com/openclaw/openclaw/pull/24485) | @chilu18 | **修复**: 替换陈旧的 doctor/restart 命令提示 | 解决 #24351 和 #24220 的误导性 CLI 提示 |
-| [#24431](https://github.com/openclaw/openclaw/pull/24431) | @s1korrrr | **CI 修复**: 在 skills-python 作业中安装 PyYAML | 修复 #24342 测试失败，保障技能系统 CI 稳定 |
-| [#24410](https://github.com/openclaw/openclaw/pull/24410) | @chilu18 | **CI 修复**: 同上（重复提交，已合并） | — |
+| [#24479](https://github.com/openclaw/openclaw/pull/24479) | @merc1305 | **Security fix**: Sanitize sensitive keys in dynamic config paths (`env.GROQ_API_KEY`, etc.) | Resolves `config.get` leaking API keys, raises security baseline |
+| [#24471](https://github.com/openclaw/openclaw/pull/24471) | @gitwithuli | **Internationalization**: Add Turkish stopword filtering, expand multi-language memory search support | Memory search language coverage increased to 6 (Spanish/Portuguese/Japanese/Korean/Arabic/Turkish) |
+| [#24335](https://github.com/openclaw/openclaw/pull/24335) | @Kay-051 | **Fix**: Prevent reasoning content leaking to WhatsApp/Telegram when `thinking=low` | Resolves #24290 regression, improves message privacy |
+| [#24413](https://github.com/openclaw/openclaw/pull/24413) | @justinhuangcode | **Fix**: Stop misidentifying macOS menu bar app as competing gateway service | Eliminates #23846 false positive, improves macOS user experience |
+| [#24485](https://github.com/openclaw/openclaw/pull/24485) | @chilu18 | **Fix**: Replace stale doctor/restart command prompts | Resolves misleading CLI prompts from #24351 and #24220 |
+| [#24431](https://github.com/openclaw/openclaw/pull/24431) | @s1korrrr | **CI fix**: Install PyYAML in skills-python job | Fixes #24342 test failure, ensures skill system CI stability |
+| [#24410](https://github.com/openclaw/openclaw/pull/24410) | @chilu18 | **CI fix**: Same as above (duplicate submission, merged) | — |
 
-**整体推进**: 今日合并 PR 主要集中于**安全加固**（密钥脱敏）、**国际化扩展**（土耳其语）、**版本回归修复**（推理泄露、误报消除）和**基础设施稳定**（CI 修复）。项目在多语言支持和安全合规方面稳步前进，但 v2026.2.22 的认证变更引发的适配问题仍需大量社区资源消化。
+**Overall progress**: Today's merged PRs primarily focused on **security hardening** (key sanitization), **internationalization expansion** (Turkish), **version regression fixes** (reasoning leaks, false positive elimination), and **infrastructure stability** (CI fixes). The project is making steady progress in multi-language support and security compliance, but the adaptation issues caused by v2026.2.22's authentication changes still require significant community resources to address.
 
 ---
 
-## 4. 社区热点
+## 4. Community Hotspots
 
-### 讨论最活跃的 Issues
+### Most Actively Discussed Issues
 
-| Issue | 评论数 | 核心诉求 | 分析 |
+| Issue | Comments | Core Demand | Analysis |
 |:---|:---|:---|:---|
-| [#23861](https://github.com/openclaw/openclaw/issues/23861) | **10** | Raspberry Pi 安装失败：`npm install` 破坏系统 | **边缘设备部署痛点** — 用户报告 3 台 Pi 设备在安装过程中被破坏，反映 ARM/嵌入式环境的安装脚本健壮性不足 |
-| [#8576](https://github.com/openclaw/openclaw/issues/8576) | **29** | Feishu 插件安装错误 `@openclaw/feishu` | **中国企业用户刚需** — 飞书集成问题长期未根治，29 条评论显示企业部署受阻，存在被竞品替代风险 |
-| [#17019](https://github.com/openclaw/openclaw/issues/17019) | **27** | `400 Item 'rs_...' of type 'reasoning' was provided without its required following item` | **推理模型兼容性** — 高频技术错误，影响 Claude 等模型的推理功能，用户多次报告复发 |
-| [#7309](https://github.com/openclaw/openclaw/issues/7309) | **5** | 支持 DeepSeek API 作为一等 LLM 提供商 | **国产模型需求** — 12 个 👍，用户希望原生支持 DeepSeek 而非手动配置，反映中国市场需求 |
-| [#13248](https://github.com/openclaw/openclaw/issues/13248) | **7** | 完整 MCP（Model Context Protocol）支持 | **生态扩展需求** — 12 个 👍，用户注意到代码库已有 MCP 基础设施但缺乏用户级配置，希望解锁标准化工具调用 |
+| [#23861](https://github.com/openclaw/openclaw/issues/23861) | **10** | Raspberry Pi installation failure: `npm install` breaks the system | **Edge device deployment pain point** — Users report 3 Pi devices broken during installation, reflecting insufficient robustness of installation scripts for ARM/embedded environments |
+| [#8576](https://github.com/openclaw/openclaw/issues/8576) | **29** | Feishu plugin installation error `@openclaw/feishu` | **Critical need for Chinese enterprise users** — Feishu integration issues have long remained unresolved, 29 comments show enterprise deployment is blocked, risk of being replaced by competitors |
+| [#17019](https://github.com/openclaw/openclaw/issues/17019) | **27** | `400 Item 'rs_...' of type 'reasoning' was provided without its required following item` | **Reasoning model compatibility** — High-frequency technical error affecting reasoning functionality for models like Claude, users report recurrence multiple times |
+| [#7309](https://github.com/openclaw/openclaw/issues/7309) | **5** | Support DeepSeek API as a first-class LLM provider | **Domestic model demand** — 12 👍, users want native DeepSeek support instead of manual configuration, reflecting Chinese market demand |
+| [#13248](https://github.com/openclaw/openclaw/issues/13248) | **7** | Full MCP (Model Context Protocol) support | **Ecosystem expansion demand** — 12 👍, users notice the codebase already has MCP infrastructure but lacks user-level configuration, hoping to unlock standardized tool invocation |
 
-**背后诉求**: 社区核心矛盾在于 **"功能广度 vs. 稳定性深度"** — 用户既希望快速接入新模型（DeepSeek、Gemini 3.1）和协议（MCP），又受困于基础功能（安装、认证、频道插件）的回归问题。企业用户（Feishu、钉钉）的集成体验直接影响采用决策。
+**Underlying demand**: The core tension in the community is **"feature breadth vs. stability depth"** — users want rapid integration of new models (DeepSeek, Gemini 3.1) and protocols (MCP), while being held back by regression issues in basic features (installation, authentication, channel plugins). Enterprise users' (Feishu, DingTalk) integration experience directly influences adoption decisions.
 
 ---
 
-## 5. Bug 与稳定性
+## 5. Bugs & Stability
 
-### 按严重程度排列
+### Ranked by Severity
 
-| 严重程度 | Issue | 描述 | 状态 | Fix PR |
+| Severity | Issue | Description | Status | Fix PR |
 |:---|:---|:---|:---|:---|
-| **P0 - 阻断** | [#24395](https://github.com/openclaw/openclaw/issues/24395) | **所有频道插件在 v2026.2.22 中被禁用** — 配置写入 `channels.<id>.enabled` 但加载器读取 `plugins.entries.<id>.enabled` | 🔴 开放 | [#24428](https://github.com/openclaw/openclaw/pull/24428), [#24231](https://github.com/openclaw/openclaw/pull/24231) |
-| **P0 - 阻断** | [#24358](https://github.com/openclaw/openclaw/issues/24358) | **Chrome 扩展中继认证失效** — HMAC 令牌变更导致 "Gateway token rejected" | 🔴 开放 | [#24489](https://github.com/openclaw/openclaw/pull/24489), [#24436](https://github.com/openclaw/openclaw/pull/24436), [#24437](https://github.com/openclaw/openclaw/pull/24437) |
-| **P1 - 高** | [#24499](https://github.com/openclaw/openclaw/issues/24499) | OpenAI 适配器发送 `ROLE_UNSPECIFIED` 导致 Moonshot/Kimi API 400 错误 | 🟡 开放 | 无 |
-| **P1 - 高** | [#24496](https://github.com/openclaw/openclaw/issues/24496) | Windows 11 ByteString 错误 — 字符值 1047 > 255 | 🟡 开放 | 无 |
-| **P1 - 高** | [#24263](https://github.com/openclaw/openclaw/issues/24263) | WhatsApp 频道配置在 Windows 上损坏 — `Unrecognized key: "enabled"` | 🟡 开放 | [#24300](https://github.com/openclaw/openclaw/pull/24300) |
-| **P2 - 中** | [#24494](https://github.com/openclaw/openclaw/issues/24494) | macOS 浏览器控制服务未监听端口 base+2 | 🟡 开放 | 无 |
-| **P2 - 中** | [#24414](https://github.com/openclaw/openclaw/issues/24414) | 桌面应用"检查更新"显示旧版本为新版本 | 🟡 开放 | 无 |
-| **P2 - 中** | [#24374](https://github.com/openclaw/openclaw/issues/24374) | MS Teams 频道 `startAccount` 立即 resolve 导致重启循环 | 🟡 开放 | [#24391](https://github.com/openclaw/openclaw/pull/24391) |
+| **P0 - Blocker** | [#24395](https://github.com/openclaw/openclaw/issues/24395) | **All channel plugins disabled in v2026.2.22** — config writes to `channels.<id>.enabled` but loader reads `plugins.entries.<id>.enabled` | 🔴 Open | [#24428](https://github.com/openclaw/openclaw/pull/24428), [#24231](https://github.com/openclaw/openclaw/pull/24231) |
+| **P0 - Blocker** | [#24358](https://github.com/openclaw/openclaw/issues/24358) | **Chrome extension relay authentication failure** — HMAC token change causes "Gateway token rejected" | 🔴 Open | [#24489](https://github.com/openclaw/openclaw/pull/24489), [#24436](https://github.com/openclaw/openclaw/pull/24436), [#24437](https://github.com/openclaw/openclaw/pull/24437) |
+| **P1 - High** | [#24499](https://github.com/openclaw/openclaw/issues/24499) | OpenAI adapter sends `ROLE_UNSPECIFIED` causing Moonshot/Kimi API 400 error | 🟡 Open | None |
+| **P1 - High** | [#24496](https://github.com/openclaw/openclaw/issues/24496) | Windows 11 ByteString error — character value 1047 > 255 | 🟡 Open | None |
+| **P1 - High** | [#24263](https://github.com/openclaw/openclaw/issues/24263) | WhatsApp channel config broken on Windows — `Unrecognized key: "enabled"` | 🟡 Open | [#24300](https://github.com/openclaw/openclaw/pull/24300) |
+| **P2 - Medium** | [#24494](https://github.com/openclaw/openclaw/issues/24494) | macOS browser control service not listening on port base+2 | 🟡 Open | None |
+| **P2 - Medium** | [#24414](https://github.com/openclaw/openclaw/issues/24414) | Desktop app "Check for Updates" shows old version as new version | 🟡 Open | None |
+| **P2 - Medium** | [#24374](https://github.com/openclaw/openclaw/issues/24374) | MS Teams channel `startAccount` resolves immediately causing restart loop | 🟡 Open | [#24391](https://github.com/openclaw/openclaw/pull/24391) |
 
-**稳定性评估**: v2026.2.22 发布引发 **2 个 P0 阻断性问题**（频道插件禁用、扩展认证失效），直接影响核心用户体验。已有 5+ PR 针对性修复，但合并节奏需加快。Windows 平台和第三方 API 适配（Moonshot）的回归测试覆盖不足。
+**Stability assessment**: The v2026.2.22 release triggered **2 P0 blocker issues** (channel plugins disabled, extension authentication failure), directly affecting core user experience. 5+ PRs have been submitted for targeted fixes, but the merge cadence needs to accelerate. Regression test coverage for Windows platform and third-party API adaptation (Moonshot) is insufficient.
 
 ---
 
-## 6. 功能请求与路线图信号
+## 6. Feature Requests & Roadmap Signals
 
-| 功能请求 | 热度 | 技术可行性 | 纳入下一版本信号 |
+| Feature Request | Heat | Technical Feasibility | Signal for Next Version Inclusion |
 |:---|:---|:---|:---|
-| **DeepSeek 原生支持** (#7309) | 12 👍 | 高（OpenAI 兼容） | 🔶 可能 — 社区呼声高，需官方提供商注册 |
-| **MCP 完整支持** (#13248) | 12 👍 | 中（基础设施存在） | 🔶 可能 — 代码库已有 `mcporter`，需用户配置层 |
-| **任务级智能模型路由** (#19166) | 5 评论 | 中 | 🔶 可能 — 与现有 `model-router` 插件方向一致 |
-| **reasoningDefault 配置键** (#24491, #24161) | 2 重复 | 高 | 🟢 高概率 — 简单配置扩展，PR 就绪 |
-| **GitHub 原生频道** (#24386) | 0 👍 | 中 | 🔶 可能 — 企业场景，需 webhook + API 双向 |
-| **手机适配 Web UI** (#22590) | 3 评论 | 中 | 🔶 可能 — 中国用户特定需求 |
-| **代理级工具权限限制** (#24372) | 0 👍 | 中 | 🔶 可能 — 安全增强，多代理场景必需 |
-| **会话归档/持久化** (#24066) | 2 评论 | 中 | 🔶 可能 — 与现有 compaction/memory 系统关联 |
+| **DeepSeek native support** (#7309) | 12 👍 | High (OpenAI-compatible) | 🔶 Possible — High community demand, requires official provider registration |
+| **Full MCP support** (#13248) | 12 👍 | Medium (infrastructure exists) | 🔶 Possible — Codebase already has `mcporter`, needs user configuration layer |
+| **Task-level intelligent model routing** (#19166) | 5 comments | Medium | 🔶 Possible — Aligned with existing `model-router` plugin direction |
+| **reasoningDefault config key** (#24491, #24161) | 2 duplicates | High | 🟢 High probability — Simple config extension, PR ready |
+| **GitHub native channel** (#24386) | 0 👍 | Medium | 🔶 Possible — Enterprise scenario, requires webhook + API bidirectional support |
+| **Mobile-friendly Web UI** (#22590) | 3 comments | Medium | 🔶 Possible — Specific demand from Chinese users |
+| **Agent-level tool permission restrictions** (#24372) | 0 👍 | Medium | 🔶 Possible — Security enhancement, essential for multi-agent scenarios |
+| **Session archiving/persistence** (#24066) | 2 comments | Medium | 🔶 Possible — Related to existing compaction/memory system |
 
-**路线图信号**: 下一版本（v2026.2.23 或 v2026.3.x）可能聚焦：
-1. **配置体验优化**（`reasoningDefault`、配置验证）
-2. **中国生态适配**（DeepSeek、移动端 Web UI、Feishu 稳定）
-3. **企业安全**（工具权限、会话隔离）
+**Roadmap signals**: The next version (v2026.2.23 or v2026.3.x) will likely focus on:
+1. **Configuration experience optimization** (`reasoningDefault`, config validation)
+2. **Chinese ecosystem adaptation** (DeepSeek, mobile Web UI, Feishu stability)
+3. **Enterprise security** (tool permissions, session isolation)
 
 ---
 
-## 7. 用户反馈摘要
+## 7. User Feedback Summary
 
-### 真实痛点
+### Real Pain Points
 
-| 场景 | 反馈来源 | 核心不满 |
+| Scenario | Feedback Source | Core Dissatisfaction |
 |:---|:---|:---|
-| **版本升级后配置失效** | #24395, #24358, #24414 | "每次更新都破坏现有设置" — 信任损耗 |
-| **多平台一致性差** | #24263 (Windows), #24494 (macOS) | "Windows 上总是更多问题" — 平台公平性质疑 |
-| **错误信息误导** | #24220, #24351 | 建议的命令不存在，调试时间浪费 |
-| **企业集成脆弱** | #8576 (Feishu), #24374 (MS Teams) | 企业 IM 集成不稳定，影响生产部署 |
-| **安全与便利平衡** | #24384 (API 密钥泄露) | 状态消息泄露敏感信息，安全意识觉醒 |
+| **Config invalidated after version upgrade** | #24395, #24358, #24414 | "Every update breaks existing settings" — trust erosion |
+| **Poor cross-platform consistency** | #24263 (Windows), #24494 (macOS) | "Windows always has more issues" — platform fairness questioned |
+| **Misleading error messages** | #24220, #24351 | Suggested commands don't exist, debugging time wasted |
+| **Fragile enterprise integrations** | #8576 (Feishu), #24374 (MS Teams) | Enterprise IM integrations unstable, affects production deployments |
+| **Security vs. convenience balance** | #24384 (API key leak) | Status messages leak sensitive information, security awareness awakening |
 
-### 满意点
-- **多语言扩展积极**（土耳其语、丹麦语 PR 快速响应）
-- **自动更新器上线**（长期请求的功能）
-- **Mistral 支持及时**（新模型快速跟进）
+### Satisfaction Points
+- **Multi-language expansion is proactive** (Turkish, Danish PRs receive fast responses)
+- **Auto-updater is live** (long-requested feature)
+- **Mistral support is timely** (quick follow-up on new models)
 
 ---
 
-## 8. 待处理积压
+## 8. Pending Backlog
 
-### 长期未响应的重要 Issue
+### Long-Unaddressed Important Issues
 
-| Issue | 创建时间 | 最后更新 | 风险 | 建议行动 |
+| Issue | Created | Last Updated | Risk | Suggested Action |
 |:---|:---|:---|:---|:---|
-| [#3460](https://github.com/openclaw/openclaw/issues/3460) 国际化 (i18n) 与本地化支持 | 2026-01-28 | 今日 | 66 评论，0 👍，官方称"无带宽支持" | 设立社区翻译计划，官方提供技术框架 |
-| [#5380](https://github.com/openclaw/openclaw/pull/5380) compaction 失败时保留最近消息 | 2026-01-31 | 今日 | 体验问题，用户数据丢失风险 | 评估合并，或纳入 compaction 重构 |
-| [#7175](https://github.com/openclaw/openclaw/issues/7175) pre-compaction hook | 2026-02-02 | 今日 | 数据保护需求 | 与 #13032 (`session:before_end` hook) 统筹设计 |
-| [#7598](https://github.com/openclaw/openclaw/issues/7598) 会话历史备份层 | 2026-02-03 | 今日 | 核心可靠性 | 优先级提升，关联 #24066 会话归档 |
-| [#8255](https://github.com/openclaw/openclaw/issues/8255) 工作区文件 post-write hooks | 2026-02-03 | 今日 | 自动化工作流 | 评估与技能系统整合 |
+| [#3460](https://github.com/openclaw/openclaw/issues/3460) Internationalization (i18n) & localization support | 2026-01-28 | Today | 66 comments, 0 👍, officially stated "no bandwidth to support" | Establish community translation program, official team provides technical framework |
+| [#5380](https://github.com/openclaw/openclaw/pull/5380) Preserve recent messages when compaction fails | 2026-01-31 | Today | Experience issue, risk of user data loss | Evaluate for merge, or incorporate into compaction refactoring |
+| [#7175](https://github.com/openclaw/openclaw/issues/7175) Pre-compaction hook | 2026-02-02 | Today | Data protection requirement | Coordinate design with #13032 (`session:before_end` hook) |
+| [#7598](https://github.com/openclaw/openclaw/issues/7598) Session history backup layer | 2026-02-03 | Today | Core reliability | Escalate priority, related to #24066 session archiving |
+| [#8255](https://github.com/openclaw/openclaw/issues/8255) Workspace file post-write hooks | 2026-02-03 | Today | Automation workflows | Evaluate integration with skills system |
 
-**维护者提醒**: 积压 Issue 中 **#3460 国际化** 和 **#7598 会话备份** 属于架构级需求，建议在下个季度路线图中明确回应，避免社区贡献者因缺乏方向而流失。
-
----
-
-*日报生成时间: 2026-02-23 | 数据来源: OpenClaw GitHub 仓库*
+**Maintainer reminder**: Among the backlog issues, **#3460 Internationalization** and **#7598 Session backup** are architecture-level requirements. It is recommended to explicitly address them in the next quarter's roadmap to prevent community contributors from leaving due to lack of direction.
 
 ---
-*本日报由 [agents-radar](https://github.com/duanyytop/agents-radar) 自动生成。*
+
+*Daily digest generated: 2026-02-23 | Data source: OpenClaw GitHub repository*
+
+---
+*This daily digest was automatically generated by [agents-radar](https://github.com/duanyytop/agents-radar).*

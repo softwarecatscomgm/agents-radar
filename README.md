@@ -1,6 +1,6 @@
 # agents-radar
 
-A GitHub Actions workflow that runs every morning at 08:00 CST. It tracks GitHub activity from AI CLI tools, OpenClaw and its peer projects in the AI agent ecosystem, and scrapes official news and research from Anthropic and OpenAI, then publishes Chinese-language daily digests as GitHub Issues and committed Markdown files.
+A GitHub Actions workflow that runs every morning at 08:00 CST. It tracks GitHub activity from AI CLI tools, OpenClaw and its peer projects in the AI agent ecosystem, and scrapes official news and research from Anthropic and OpenAI, then publishes English-language daily digests as GitHub Issues and committed Markdown files.
 
 ## Tracked sources
 
@@ -109,37 +109,37 @@ A shared state file `digests/web-state.json` tracks which web URLs have been see
 
 ---
 
-`ai-cli.md` structure (written in Chinese):
+`ai-cli.md` structure:
 ```
-## 横向对比
-  生态全景 / 活跃度对比表 / 共同需求 / 差异定位 / 趋势信号
+## Cross-Tool Comparison
+  Ecosystem Overview / Activity Table / Shared Needs / Differentiation / Trend Signals
 
-## 各工具详细报告
-  <details> Claude Code    — [Claude Code Skills 社区热点]
-                             热门 Skills 排行 / 社区需求趋势 / 高潜力待合并 Skills
+## Per-Tool Detailed Reports
+  <details> Claude Code    — [Claude Code Skills Community Highlights]
+                             Top Skills Ranking / Community Demand Trends / High-Potential Pending Skills
                              ---
-                             今日速览 / 热点 Issues / PR 进展 / 趋势
-  <details> OpenAI Codex   — 今日速览 / 热点 Issues / PR 进展 / 趋势
+                             Today's Highlights / Hot Issues / PR Progress / Trends
+  <details> OpenAI Codex   — Today's Highlights / Hot Issues / PR Progress / Trends
   <details> Gemini CLI     — ...
   <details> Kimi Code CLI  — ...
   <details> OpenCode       — ...
   <details> Qwen Code      — ...
 ```
 
-`ai-agents.md` structure (written in Chinese):
+`ai-agents.md` structure:
 ```
-Issues: N | PRs: N | 覆盖项目: 10 个
+Issues: N | PRs: N | Projects tracked: 10
 
-## OpenClaw 项目深度报告
-  今日速览 / 版本发布 / 项目进展 / 社区热点 /
-  Bug稳定性 / 功能请求 / 用户反馈 / 待处理积压
+## OpenClaw Deep Report
+  Today's Highlights / Releases / Project Progress / Community Hot Topics /
+  Bugs & Stability / Feature Requests / User Feedback / Backlog Watch
 
-## 横向生态对比
-  生态全景 / 活跃度对比表 / OpenClaw定位分析 /
-  共同技术方向 / 差异化定位 / 社区热度与成熟度 / 趋势信号
+## Cross-Ecosystem Comparison
+  Ecosystem Overview / Activity Table / OpenClaw Positioning /
+  Shared Technical Directions / Differentiation / Community Momentum & Maturity / Trend Signals
 
-## 同赛道项目详细报告
-  <details> Zeroclaw   — 今日速览 / 版本发布 / 项目进展 / ...（8节）
+## Peer Project Detailed Reports
+  <details> Zeroclaw   — Today's Highlights / Releases / Project Progress / ... (8 sections)
   <details> EasyClaw   — ...
   <details> LobsterAI  — ...
   <details> ZeptoClaw  — ...
@@ -150,16 +150,16 @@ Issues: N | PRs: N | 覆盖项目: 10 个
   <details> TinyClaw   — ...
 ```
 
-`ai-web.md` structure (written in Chinese):
+`ai-web.md` structure:
 ```
-数据来源: anthropic.com (N 篇) + openai.com (N 篇)
+Data sources: anthropic.com (N articles) + openai.com (N articles)
 
-今日速览
-Anthropic/Claude 内容精选  (news / research / engineering / learn)
-OpenAI 内容精选            (research / release / company / safety / ...)
-战略信号解读
-值得关注的细节
-[首次全量时额外包含: 内容格局总览]
+Today's Highlights
+Anthropic / Claude Content Highlights  (news / research / engineering / learn)
+OpenAI Content Highlights              (research / release / company / safety / ...)
+Strategic Signal Analysis
+Details Worth Watching
+[First-run only: Content Landscape Overview]
 ```
 
 Historical digests are stored in [`digests/`](./digests/). Published issues are tagged by type: [`digest`](../../issues?label=digest) · [`openclaw`](../../issues?label=openclaw) · [`web`](../../issues?label=web).

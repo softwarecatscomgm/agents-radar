@@ -1,131 +1,131 @@
-# OpenClaw 项目动态日报 2026-02-25
+# OpenClaw Project Daily Digest 2026-02-25
 
-> 数据来源: [openclaw/openclaw](https://github.com/openclaw/openclaw) | Issues: 500 | PRs: 500 | 生成时间: 2026-02-25 01:41 UTC
+> Data source: [openclaw/openclaw](https://github.com/openclaw/openclaw) | Issues: 500 | PRs: 500 | Generated: 2026-02-25 01:41 UTC
 
-# OpenClaw 项目日报 | 2026-02-25
-
----
-
-## 1. 今日速览
-
-OpenClaw 今日保持**极高活跃度**：24小时内处理 500 条 Issues（339 活跃/161 关闭）和 500 条 PR（335 待合并/165 已处理），发布 v2026.2.23 版本。社区焦点集中在 **KiloCode 提供商集成**（新功能）、**Telegram/WhatsApp 渠道稳定性**（回归问题）、以及 **i18n 国际化长期诉求**（68 评论热帖）。安全加固成为今日代码审查主线，多个沙箱逃逸和跨渠道隐私漏洞获修复。项目整体健康度良好，但渠道插件（尤其是 Telegram）的近期回归需持续关注。
+# OpenClaw Project Daily Digest | 2026-02-25
 
 ---
 
-## 2. 版本发布
+## 1. Today's Overview
+
+OpenClaw maintained **extremely high activity** today: 500 Issue updates (339 active/161 closed) and 500 PR updates (335 pending merge/165 processed) within 24 hours, with v2026.2.23 version released. Community focus centered on **KiloCode provider integration** (new feature), **Telegram/WhatsApp channel stability** (regression issues), and **i18n internationalization long-standing request** (68-comment hot post). Security hardening became today's code review main theme, with multiple sandbox escape and cross-channel privacy vulnerabilities fixed. Overall project health is good, but recent channel plugin (especially Telegram) regressions need continued attention.
+
+---
+
+## 2. Version Releases
 
 ### [v2026.2.23](https://github.com/openclaw/openclaw/releases/tag/v2026.2.23) — 2026-02-23
 
-| 属性 | 内容 |
+| Attribute | Content |
 |:---|:---|
-| **发布类型** | 功能版本 |
-| **破坏性变更** | 无明确标注 |
-| **迁移注意** | Browser Relay 扩展用户需更新令牌格式（见 #24430） |
+| **Release Type** | Feature release |
+| **Breaking Changes** | None explicitly noted |
+| **Migration Notes** | Browser Relay extension users need to update token format (see #24430) |
 
-**核心变更：**
+**Core Changes:**
 
-- **KiloCode 提供商一级支持** ([#20212](https://github.com/openclaw/openclaw/pull/20212)) — 由 @jrf0110 和 @markijbema 贡献
-  - 完整认证流程与引导式接入
-  - 隐式提供商自动检测
-  - 模型默认值与转录/缓存-TTL 处理
-  - 默认模型：`kilocode/anthropic/claude-opus-4.6`
+- **KiloCode Provider First-Class Support** ([#20212](https://github.com/openclaw/openclaw/pull/20212)) — Contributed by @jrf0110 and @markijbema
+  - Complete auth flow and guided onboarding
+  - Implicit provider auto-detection
+  - Model defaults and transcription/cache-TTL handling
+  - Default model: `kilocode/anthropic/claude-opus-4.6`
 
 ---
 
-## 3. 项目进展
+## 3. Project Progress
 
-### 今日合并/关闭的关键 PR
+### Today's Merged/Closed Key PRs
 
-| PR | 作者 | 影响领域 | 进展说明 |
+| PR | Author | Impact Area | Progress Notes |
 |:---|:---|:---|:---|
-| [#24571](https://github.com/openclaw/openclaw/pull/24571) | @brandonwise | **安全/隐私** | 修复共享会话中的跨渠道回复路由泄露（#24152）。`dmScope="main"` 时，不同 DM 渠道的 `lastChannel`/`lastTo` 字段不再互相覆盖，消除隐私风险 |
-| [#25804](https://github.com/openclaw/openclaw/pull/25804) | @Lucenx9 | **WhatsApp 渠道** | 过滤推理消息投递，解决 `thinking=low` 模式下内部推理内容外泄至用户端（修复 #25214, #24328） |
-| [#25891](https://github.com/openclaw/openclaw/pull/25891) | @albertlieyingadrian | **沙箱安全** | 阻止路径以 `-` 开头的 shell 选项注入攻击，修复 `---` 模式导致的语法错误崩溃 |
-| [#25729](https://github.com/openclaw/openclaw/pull/25729) | @Suko | **Web UI** | 修复 `/agents` 面板回退模型输入未继承 `agents.defaults` 配置的问题 |
-| [#22458](https://github.com/openclaw/openclaw/pull/22458) | @apethree | **macOS 客户端** | 修复 WebChat 面板圆角裁剪视觉问题 |
+| [#24571](https://github.com/openclaw/openclaw/pull/24571) | @brandonwise | **Security/Privacy** | Fix cross-channel reply routing leak in shared sessions (#24152). When `dmScope="main"`, `lastChannel`/`lastTo` fields from different DM channels no longer overwrite each other, eliminating privacy risk |
+| [#25804](https://github.com/openclaw/openclaw/pull/25804) | @Lucenx9 | **WhatsApp Channel** | Filter reasoning message delivery, fixing internal reasoning content leaking to user side in `thinking=low` mode (fixes #25214, #24328) |
+| [#25891](https://github.com/openclaw/openclaw/pull/25891) | @albertlieyingadrian | **Sandbox Security** | Block shell option injection attacks via paths starting with `-`, fix `---` pattern causing syntax error crashes |
+| [#25729](https://github.com/openclaw/openclaw/pull/25729) | @Suko | **Web UI** | Fix `/agents` panel fallback model input not inheriting `agents.defaults` configuration |
+| [#22458](https://github.com/openclaw/openclaw/pull/22458) | @apethree | **macOS Client** | Fix WebChat panel rounded corner clipping visual issue |
 
-**整体推进评估：** 今日合并聚焦**安全加固**（2 项隐私/沙箱修复）和**渠道稳定性**（WhatsApp 推理过滤），项目在安全基线和用户体验层面稳步前进。
+**Overall Progress Assessment:** Today's merges focused on **security hardening** (2 privacy/sandbox fixes) and **channel stability** (WhatsApp reasoning filtering), with the project steadily advancing on security baseline and user experience.
 
 ---
 
-## 4. 社区热点
+## 4. Community Highlights
 
-### 高讨论度 Issues
+### High-Discussion Issues
 
-| Issue | 评论 | 核心诉求 | 状态 |
+| Issue | Comments | Core Need | Status |
 |:---|:---|:---|:---|
-| [#3460](https://github.com/openclaw/openclaw/issues/3460) **i18n & 本地化支持** | 68 | 全球用户强烈需求多语言界面，维护团队承认资源不足但保持开放 | 🔥 **长期热点** |
-| [#1690](https://github.com/openclaw/openclaw/issues/1690) Webchat UI 网关令牌缺失 | 31 | 配置复杂度问题，URL 令牌与网关配置不匹配导致认证失败 | ✅ 已关闭 |
-| [#1649](https://github.com/openclaw/openclaw/issues/1649) iMessage 自聊回声循环 | 26 | 苹果生态集成稳定性，历史修复未完全解决边界场景 | ✅ 已关闭 |
-| [#24718](https://github.com/openclaw/openclaw/issues/24718) Telegram 插件不可用 | 18 | **v2026.2.22 回归问题**，插件加载失败阻断新用户接入 | ✅ 已关闭 |
-| [#13991](https://github.com/openclaw/openclaw/issues/13991) 联想层级记忆系统提案 | 16 | 社区成员提出类人类记忆架构，引发架构层面深度讨论 | 💡 **路线图信号** |
+| [#3460](https://github.com/openclaw/openclaw/issues/3460) **i18n & Localization Support** | 68 | Global users strongly demand multi-language interface, maintenance team acknowledges resource constraints but remains open | 🔥 **Long-term hot topic** |
+| [#1690](https://github.com/openclaw/openclaw/issues/1690) Webchat UI gateway token missing | 31 | Configuration complexity issue, URL token and gateway config mismatch causing auth failure | ✅ Closed |
+| [#1649](https://github.com/openclaw/openclaw/issues/1649) iMessage self-chat echo loop | 26 | Apple ecosystem integration stability, historical fix didn't fully resolve edge cases | ✅ Closed |
+| [#24718](https://github.com/openclaw/openclaw/issues/24718) Telegram plugin unusable | 18 | **v2026.2.22 regression**, plugin load failure blocking new user onboarding | ✅ Closed |
+| [#13991](https://github.com/openclaw/openclaw/issues/13991) Associative hierarchical memory system proposal | 16 | Community member proposes human-like memory architecture, sparking architecture-level deep discussion | 💡 **Roadmap signal** |
 
-**诉求分析：** i18n 是**结构性需求**（用户规模扩张瓶颈），记忆系统提案代表**架构创新方向**，而 Telegram/WhatsApp 渠道回归反映**发布质量管控**需加强。
+**Need Analysis:** i18n is a **structural need** (user base expansion bottleneck), the memory system proposal represents an **architectural innovation direction**, while Telegram/WhatsApp channel regressions reflect **release quality control** needs strengthening.
 
 ---
 
-## 5. Bug 与稳定性
+## 5. Bugs & Stability
 
-### 按严重程度排列
+### By Severity
 
-| 严重度 | Issue | 描述 | 状态 |
+| Severity | Issue | Description | Status |
 |:---|:---|:---|:---|
-| 🔴 **高** | [#24395](https://github.com/openclaw/openclaw/issues/24395) | **v2026.2.22 全渠道插件失效回归** — 所有渠道插件保持 `disabled` 状态，2026.2.19 正常 | ✅ 已关闭 |
-| 🔴 **高** | [#25545](https://github.com/openclaw/openclaw/issues/25545) | **v2026.2.22-2 Telegram 插件不可用** — 引导向导无法完成配置 | ✅ 已关闭 |
-| 🟡 **中** | [#6470](https://github.com/openclaw/openclaw/issues/6470) | 推理/思考内容泄露至 Discord，与模型无关 | 🔄 待修复（#25804 修复 WhatsApp，Discord 待确认） |
-| 🟡 **中** | [#6156](https://github.com/openclaw/openclaw/issues/6156) | macOS 网关永不就绪，设置向导卡死 | 🔄 开放中 |
-| 🟡 **中** | [#22445](https://github.com/openclaw/openclaw/issues/22445) | WSL 环境下网关连接失败，即使配置 `dangerouslyAllowLocalhost: true` | 🔄 开放中 |
-| 🟡 **中** | [#23116](https://github.com/openclaw/openclaw/issues/23116) | MiniMax `tool_use_id` 不匹配导致会话永久损坏（HTTP 400 error 2013） | 🔄 开放中 |
-| 🟢 **低** | [#24430](https://github.com/openclaw/openclaw/issues/24430) | Browser Relay 扩展升级后拒绝有效 `gateway.auth.token` | ✅ 已关闭 |
+| 🔴 **High** | [#24395](https://github.com/openclaw/openclaw/issues/24395) | **v2026.2.22 all-channel plugin failure regression** — All channel plugins remain `disabled`, 2026.2.19 worked fine | ✅ Closed |
+| 🔴 **High** | [#25545](https://github.com/openclaw/openclaw/issues/25545) | **v2026.2.22-2 Telegram plugin unusable** — Setup wizard cannot complete configuration | ✅ Closed |
+| 🟡 **Medium** | [#6470](https://github.com/openclaw/openclaw/issues/6470) | Reasoning/thinking content leaking to Discord, model-independent | 🔄 Pending fix (#25804 fixes WhatsApp, Discord TBC) |
+| 🟡 **Medium** | [#6156](https://github.com/openclaw/openclaw/issues/6156) | macOS gateway never becomes ready, setup wizard stuck | 🔄 Open |
+| 🟡 **Medium** | [#22445](https://github.com/openclaw/openclaw/issues/22445) | WSL environment gateway connection failure, even with `dangerouslyAllowLocalhost: true` | 🔄 Open |
+| 🟡 **Medium** | [#23116](https://github.com/openclaw/openclaw/issues/23116) | MiniMax `tool_use_id` mismatch causing permanent session corruption (HTTP 400 error 2013) | 🔄 Open |
+| 🟢 **Low** | [#24430](https://github.com/openclaw/openclaw/issues/24430) | Browser Relay extension rejects valid `gateway.auth.token` after upgrade | ✅ Closed |
 
-**关键观察：** v2026.2.22 出现**渠道插件系统性回归**，24 小时内密集报告 Telegram/WhatsApp/全渠道失效问题，建议维护团队审查该版本插件加载机制变更。
+**Key Observation:** v2026.2.22 experienced a **systemic channel plugin regression**, with concentrated reports of Telegram/WhatsApp/all-channel failures within 24 hours. Recommend the maintenance team review plugin loading mechanism changes in that version.
 
 ---
 
-## 6. 功能请求与路线图信号
+## 6. Feature Requests & Roadmap Signals
 
-| 需求 | Issue/PR | 可行性信号 | 纳入预测 |
+| Request | Issue/PR | Feasibility Signal | Inclusion Forecast |
 |:---|:---|:---|:---|
-| **完整 MCP 支持** | [#13248](https://github.com/openclaw/openclaw/issues/13248) | 代码库已有 `mcporter` 工具基础设施，社区投票 12 👍 | **高** — 下一季度 |
-| **任务级智能模型路由** | [#19166](https://github.com/openclaw/openclaw/issues/19166) | 标记为重复，但需求明确（按任务类型自动选模型） | 中 — 需架构设计 |
-| **Telegram 原生执行审批 UI** | [#24104](https://github.com/openclaw/openclaw/pull/24104) | **PR 已提交**，实现内联按钮审批，对标 Discord 体验 | **高** — 近期合并 |
-| **MABOS 前端仪表板** | [#20450](https://github.com/openclaw/openclaw/pull/20450) | 大型 PR（XL），含 7 模块 SPA + 20 推理引擎工具，AI 辅助开发 | 中 — 需深度审查 |
-| **联想层级记忆** | [#13991](https://github.com/openclaw/openclaw/issues/13991) | 架构级提案，16 评论深度讨论，无现成 PR | 低 — 长期研究 |
+| **Full MCP Support** | [#13248](https://github.com/openclaw/openclaw/issues/13248) | Codebase already has `mcporter` tool infrastructure, community voted 12 👍 | **High** — Next quarter |
+| **Task-Level Intelligent Model Routing** | [#19166](https://github.com/openclaw/openclaw/issues/19166) | Marked as duplicate, but need is clear (auto model selection by task type) | Medium — Needs architecture design |
+| **Telegram Native Execution Approval UI** | [#24104](https://github.com/openclaw/openclaw/pull/24104) | **PR submitted**, implements inline button approval, benchmarking Discord experience | **High** — Near-term merge |
+| **MABOS Frontend Dashboard** | [#20450](https://github.com/openclaw/openclaw/pull/20450) | Large PR (XL), containing 7-module SPA + 20 reasoning engine tools, AI-assisted development | Medium — Needs deep review |
+| **Associative Hierarchical Memory** | [#13991](https://github.com/openclaw/openclaw/issues/13991) | Architecture-level proposal, 16 comments deep discussion, no ready PR | Low — Long-term research |
 
 ---
 
-## 7. 用户反馈摘要
+## 7. User Feedback Summary
 
-### 真实痛点
+### Real Pain Points
 
-| 场景 | 来源 Issue | 情绪 |
+| Scenario | Source Issue | Sentiment |
 |:---|:---|:---|
-| **"我配置了 groupPolicy='disabled'，群组消息仍然进来"** — 配置语义不明确 | [#2019](https://github.com/openclaw/openclaw/issues/2019) | 😤 挫败 |
-| **"升级后所有渠道失效，回退到 2026.2.19 才恢复"** — 版本信任危机 | [#24395](https://github.com/openclaw/openclaw/issues/24395) | 😠 焦虑 |
-| **"WSL 环境文档不足，dangerouslyAllowLocalhost 也不工作"** — 开发者体验缺口 | [#22445](https://github.com/openclaw/openclaw/issues/22445) | 😕 困惑 |
-| **"workspace 文件每消息注入 35,600 tokens，浪费 93.5%"** — 成本敏感用户 | [#9157](https://github.com/openclaw/openclaw/issues/9157) | 💸 担忧 |
+| **"I configured groupPolicy='disabled', group messages still coming through"** — Config semantics unclear | [#2019](https://github.com/openclaw/openclaw/issues/2019) | 😤 Frustrated |
+| **"After upgrading all channels broke, had to rollback to 2026.2.19 to recover"** — Version trust crisis | [#24395](https://github.com/openclaw/openclaw/issues/24395) | 😠 Anxious |
+| **"WSL environment docs insufficient, dangerouslyAllowLocalhost doesn't work either"** — Developer experience gap | [#22445](https://github.com/openclaw/openclaw/issues/22445) | 😕 Confused |
+| **"workspace files inject 35,600 tokens per message, wasting 93.5%"** — Cost-sensitive user | [#9157](https://github.com/openclaw/openclaw/issues/9157) | 💸 Concerned |
 
-### 满意点
-- KiloCode 集成获积极反馈（"一键接入 Anthropic 模型"）
-- 安全漏洞响应迅速（跨渠道隐私修复 24 小时内合并）
+### Satisfaction Points
+- KiloCode integration receiving positive feedback ("one-click Anthropic model access")
+- Security vulnerability response swift (cross-channel privacy fix merged within 24 hours)
 
 ---
 
-## 8. 待处理积压
+## 8. Pending Backlog
 
-### 需维护者关注的长期 Issue
+### Long-Unresponded Important Issues
 
-| Issue | 年龄 | 风险 | 建议行动 |
+| Issue | Age | Risk | Recommended Action |
 |:---|:---|:---|:---|
-| [#3460](https://github.com/openclaw/openclaw/issues/3460) i18n 支持 | 28 天 | 用户增长天花板 | 发布社区贡献指南，建立翻译工作流 |
-| [#9831](https://github.com/openclaw/openclaw/issues/9831) gemini-cli 检测失败 | 20 天 |  Google 生态集成 | 复现环境配置，优先级：中 |
-| [#7649](https://github.com/openclaw/openclaw/issues/7649) Matrix E2EE 自验证缺失 | 22 天 | 企业/隐私用户需求 | 评估加密库依赖，优先级：低 |
-| [#9157](https://github.com/openclaw/openclaw/issues/9157) Workspace 文件重复注入 | 21 天 | **成本效率关键** | 缓存机制设计，优先级：高 |
-| [#9030](https://github.com/openclaw/openclaw/issues/9030) "鉴别器层"中间件架构 RFC | 21 天 | 安全架构创新 | 标记为 `roadmap`，维护者回应 |
+| [#3460](https://github.com/openclaw/openclaw/issues/3460) i18n support | 28 days | User growth ceiling | Publish community contribution guide, establish translation workflow |
+| [#9831](https://github.com/openclaw/openclaw/issues/9831) gemini-cli detection failure | 20 days | Google ecosystem integration | Reproduce environment config, priority: Medium |
+| [#7649](https://github.com/openclaw/openclaw/issues/7649) Matrix E2EE self-verification missing | 22 days | Enterprise/privacy user need | Evaluate crypto library dependencies, priority: Low |
+| [#9157](https://github.com/openclaw/openclaw/issues/9157) Workspace file repeated injection | 21 days | **Cost efficiency critical** | Cache mechanism design, priority: High |
+| [#9030](https://github.com/openclaw/openclaw/issues/9030) "Discriminator layer" middleware architecture RFC | 21 days | Security architecture innovation | Tag as `roadmap`, maintainer response needed |
 
 ---
 
-*日报生成时间：2026-02-25 | 数据来源：GitHub API 与社区活动流*
+*Daily digest generated: 2026-02-25 | Data source: GitHub API and community activity stream*
 
 ---
-*本日报由 [agents-radar](https://github.com/duanyytop/agents-radar) 自动生成。*
+*This daily digest was auto-generated by [agents-radar](https://github.com/duanyytop/agents-radar).*
