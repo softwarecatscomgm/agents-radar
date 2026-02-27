@@ -5,7 +5,8 @@
       "Bash(npx tsc:*)",
       "Bash(gh run:*)",
       "Bash(gh workflow:*)",
-      "Bash(git push:*)"
+      "Bash(git push:*)",
+      "Bash(npm version:*)"
     ]
   }
 }
