@@ -1,6 +1,6 @@
 # AI CLI Tools Community Digest 2026-02-27
 
-> Generated: 2026-02-27 06:57 UTC | Tools tracked: 3
+> Generated: 2026-02-27 07:13 UTC | Tools tracked: 3
 
 - [Claude Code](https://github.com/anthropics/claude-code)
 - [OpenAI Codex](https://github.com/openai/codex)
@@ -12,36 +12,35 @@
 ## Cross-Tool Comparison
 
 ### Ecosystem Snapshot
-As of February 2026, the AI CLI tool landscape shows distinct trends in platform stability, model integration, and user experience. Windows remains a significant pain point for stability and functionality across the board, while efforts focus on expanding model support, enhancing real-time interaction, and improving developer workflows through plugins and better configuration management.
+The AI CLI tooling landscape in early 2026 shows consistent development across Claude Code, OpenAI Codex, and OpenCode, with a strong emphasis on platform stability (particularly Windows), plugin integration, and improved user experience. Emerging trends indicate broader model compatibility and more sophisticated session management.
 
 ### Activity
 | Tool | Issues | PRs | Releases | Momentum |
-|--------|--------|-----|----------|----------|
-| Claude Code | 60+ | 10+ | 2 | 🟡 |
-| OpenAI Codex | 20+ | 10+ | 7 | 🟢 |
-| OpenCode | 17+ | 10+ | 2 | 🟡 |
+|------|--------|-----|----------|----------|
+| Claude Code | 8 | 10 | 2 | 🟡 steady |
+| OpenAI Codex | 8 | 8 | 6 | 🟡 steady |
+| OpenCode | 8 | 9 | 1 | 🟡 steady |
 
 ### Shared Directions
-- **Windows Stability & Performance:** Addressing OS-specific bugs and crashes is paramount. (Claude Code, OpenAI Codex, OpenCode)
-- **Plugin/Extension Ecosystem:** Enhancing extensibility and integrating external tools. (Claude Code, OpenAI Codex)
-- **Model Integration & Compatibility:** Support for newer LLMs and ensuring consistent performance. (Claude Code, OpenCode)
-- **User Experience & Customization:** Improving TUI responsiveness, theme options, and persistent settings. (Claude Code, OpenAI Codex)
-- **Real-time and Collaboration:** Advancing features for collaborative coding and instant feedback. (OpenAI Codex)
-- **Security & Robustness:** Fixing race conditions, improving security guidance, and handling sensitive data. (Claude Code, OpenCode)
+*   **Windows Stability:** Persistent issues and bug fixes on the Windows platform (Claude Code, OpenAI Codex, OpenCode).
+*   **Plugin/Hook Integration:** Ongoing development and bug fixing for extending functionality via plugins and hooks (Claude Code, OpenAI Codex).
+*   **Session/Conversation Management:** Features for managing and persisting user interactions (Claude Code, OpenAI Codex).
+*   **Model Compatibility:** Challenges and efforts to support newer or specific LLM versions (OpenAI Codex, OpenCode).
+*   **CLI/TUI Usability:** Enhancements and bug fixes for interactive command-line and terminal user interfaces (OpenAI Codex, OpenCode).
 
 ### Differentiation
 | Tool | Focus | Target Users | Approach |
 |------|-------|-------------|----------|
-| Claude Code | Prompt engineering, TUI bugs | Developers, AI researchers | Active issue resolution, community input |
-| OpenAI Codex | Desktop app, tool calls | Broad developer base | Platform expansion, feature-rich development |
-| OpenCode | Model diversity, Windows fixes | Developers seeking choice | Rapid provider integration, core stability |
+| Claude Code | Robust Windows support, advanced session management | Developers, Enterprise | Extensible plugin architecture |
+| OpenAI Codex | Cross-platform app/CLI, developer productivity | Developers, AI enthusiasts | Integrated IDE support |
+| OpenCode | Broad LLM provider integration, custom tools | Developers, Experimenters | Flexible provider architecture |
 
 ### Trend Signals
-- Persistent challenges in Windows environment stability across multiple tools.
-- Growing demand for seamless integration of diverse LLM providers and models.
-- Increased focus on plugin architectures to extend core functionality.
-- User requests for deeper UI customization and theming options.
-- Ongoing efforts to refine real-time collaboration and AI-assisted development workflows.
+*   Increased demand for robust Windows CLI performance.
+*   Growing importance of seamless plugin and hook ecosystems.
+*   User expectation for advanced session/conversation persistence.
+*   Need for broader LLM provider support and model version compatibility.
+*   Persistent user requests for UI customization and theming.
 
 ---
 
@@ -57,71 +56,72 @@ As of February 2026, the AI CLI tool landscape shows distinct trends in platform
 ### Top Skills
 | # | Skill Name | 💬 | Status | Purpose (≤15 words) |
 |---|-----------|-----|--------|---------------------|
-| 1 | skill-quality-analyzer and skill-security-analyzer | N/A | OPEN | Comprehensive quality and security analysis for Claude Skills and marketplace. |
-| 2 | frontend-design | N/A | OPEN | Enhances clarity and actionability of frontend design guidance. |
-| 3 | codebase-inventory-audit | N/A | OPEN | Audits codebase for orphaned code, documentation gaps, and bloat. |
-| 4 | SAP-RPT-1-OSS predictor | N/A | OPEN | Predictive analytics on SAP data using SAP's open-source tabular model. |
-| 5 | masonry-generate-image-and-videos | N/A | OPEN | AI-powered image and video generation via Masonry CLI. |
-| 6 | ShieldCortex: persistent memory & security | N/A | OPEN | Persistent memory and security for AI agents. |
+| 1 | skill-quality-analyzer and skill-security-analyzer | - | OPEN | Meta skills for marketplace quality and security analysis. |
+| 2 | comprehensive system documentation and flowcharts | - | OPEN | Detailed documentation for evidence management system. |
+| 3 | frontend-design | - | OPEN | Improves clarity and actionability of frontend design guidance. |
+| 4 | codebase-inventory-audit | - | OPEN | Audits codebase for cleanup, documentation, and unused assets. |
+| 5 | SAP-RPT-1-OSS predictor | - | OPEN | Predictive analytics for SAP business data using foundation model. |
+| 6 | masonry-generate-image-and-videos | - | OPEN | AI skill for image and video generation via Masonry CLI. |
 
 ### Demand Trends
-- Enhancement of `skill-creator` to follow best practices and improve token efficiency.
-- A dedicated skill for AI agent governance, focusing on safety patterns and policy enforcement.
-- Integration and exposure of Skills as Micro-Composition Protocols (MCPs) for better API interoperability.
-- Exploration of AWS Bedrock integration for skills.
+- Need for robust agent governance and safety patterns.
+- Integration of Skills with external platforms like AWS Bedrock.
+- Enhancement of `skill-creator` for better token efficiency and usability.
+- Proposal for a Skill Package Manager (MCP) for AI Agents.
+- Integration of MCP Apps into `mcp-builder` skill.
 
 ### Pending Skills
-- PR #335: Adds `masonry-generate-image-and-videos` skill for AI media generation.
-- PR #444: Introduces the `AURELION` skill suite for structured knowledge management.
-- PR #386: Integrates `ShieldCortex` for persistent memory and security in AI agents.
-- PR #210: Improves `frontend-design` skill clarity and actionability.
+- PR #335: `masonry-generate-image-and-videos` skill for AI media generation.
+- PR #386: `ShieldCortex`: persistent memory and security for AI agents.
+- PR #419: `Buildr` skill for Telegram integration.
+- PR #444: `AURELION` skill suite for knowledge management.
 
 ### TL;DR
-The community is actively seeking to improve the robustness, security, and discoverability of Claude Skills, with a strong demand for better documentation, enhanced tooling, and advanced governance capabilities.
+The community is focused on enhancing skill robustness, security, and external integration, with a strong desire for better agent governance and package management.
 
 ---
 
 ### Highlights
-- Two new releases, v2.1.62 and v2.1.61, addressed prompt suggestion cache regression and Windows config file corruption respectively.
-- Active discussion on issues concerning Windows TUI/API bugs, persistent permission prompts, and folder picker limitations.
-- Significant PR activity focusing on security guidance, hookify enhancements, and fixing a race condition in concurrent config writes.
+- Two new releases (v2.1.61, v2.1.62) address prompt suggestion cache and Windows config file corruption.
+- Significant activity on issues related to Windows platform bugs and plugin/hook integration.
+- Progress noted in PRs for session management, security guidance, and hookify improvements.
 
 ### Releases
-- v2.1.62: Fixed prompt suggestion cache regression that reduced cache hit rates.
+- v2.1.62: Fixed prompt suggestion cache regression.
 - v2.1.61: Fixed concurrent writes corrupting config file on Windows.
 
 ### Hot Issues
 | # | Title | 💬 | 👍 | Why it matters |
-|---|---|---|---|---|
-| #24055 | [BUG] API Error: Claude's response exceeded the 32000 output token maximum. | 72 | 53 | High impact bug impacting response generation and token limits. |
-| #11380 | [BUG] Claude continually asks for permission, even after selecting yes, always allow. | 53 | 37 | Disruptive user experience issue on Windows. |
-| #24964 | [BUG] Cowork: Folder picker rejects folders outside home directory, symlinks/junctions also blocked | 47 | 63 | Limits flexibility and usability for folder selection. |
-| #26554 | [BUG] Cowork: RPC error -1 virtiofs/Plan9 mount fails with "Plan9 mount failed: bad address" | 31 | 34 | Network/filesystem integration issue affecting Cowork. |
-| #12084 | [BUG] Claude Code 2.0.43+ exits immediately after rendering welcome screen on RHEL8 | 24 | 20 | Critical startup failure on Linux RHEL8. |
-| #1302 | [FEAT] Add support for custom terminal themes beyond built-in options | 23 | 88 | Long-standing feature request for UI customization. |
-| #20469 | Feature Request: Microsoft 365 Connector for Max Plan Individual Users | 18 | 14 | Addresses an access gap for paying individual users. |
-| #21875 | Repeated Bun v1.3.5 segfaults -- 78 crashes, root cause identified (Windows + WSL) | 17 | 4 | High-priority bug with frequent crashes on Windows/WSL. |
+|---|-------|----|----|----------------|
+| #24055 | [BUG] API Error: Claude's response exceeded the 32000 output token maximum. | 72 | 53 | Top Windows bug; API output limits impacting functionality. |
+| #11380 | [BUG] Claude continually asks for permission, even after selecting yes, always allow. | 53 | 37 | Persistent Windows permission prompt annoyance. |
+| #26554 | [BUG] Cowork: RPC error -1 virtiofs/Plan9 mount fails with "Plan9 mount failed: bad address" | 31 | 34 | Critical error for Cowork on specific platforms. |
+| #12084 | [BUG] Claude Code 2.0.43+ exits immediately after rendering welcome screen on RHEL8 | 24 | 20 | Startup failure on RHEL8 impacts Linux users. |
+| #1302 | [FEAT] Add support for custom terminal themes beyond built-in options | 23 | 88 | Popular request for UI customization. |
+| #20469 | Feature Request: Microsoft 365 Connector for Max Plan Individual Users | 19 | 14 | Feature parity request for individual plan users. |
+| #28892 | [BUG] Claude Desktop cannot install on Windows - redirects to Microsoft Store during installation | 12 | 1 | Windows install blocking issue. |
+| #14499 | [Bug] Azure-hosted plugins fail in marketplace with HTTP/SSH and `.git` extension requirements | 10 | 15 | Plugin deployment issues for Azure-hosted solutions. |
 
 ### Key PRs
 | # | Title | Status | What it does |
-|---|---|---|---|
-| #29012 | Add session-management plugin: fork/move conversations across directories | OPEN | Enables managing and relocating conversations. |
-| #28850 | docs: clarify Windows install command requires PowerShell | OPEN | Improves clarity for Windows installation process. |
-| #29097 | fix(security-guidance): output structured JSON so model receives security warnings | OPEN | Ensures security warnings are correctly processed. |
-| #29095 | fix(hookify): search both project and home directories for rule files | OPEN | Fixes rule file loading for hookify. |
-| #29092 | fix(security-guidance): normalize backslashes in path checks for Windows | OPEN | Resolves Windows path handling in security guidance. |
-| #29091 | fix(hookify): use typing.Tuple for Python 3.8 compatibility | OPEN | Ensures hookify compatibility with older Python versions. |
-| #29077 | RFC: Fix race condition in ~/.claude.json concurrent writes | CLOSED | Addresses critical concurrent write corruption issue. |
-| #13307 | fix: portable shebang should use env for bash | OPEN | Improves portability of bash scripts. |
+|---|-------|--------|--------------|
+| #28850 | docs: clarify Windows install command requires PowerShell | OPEN | Clarifies Windows install needs PowerShell. |
+| #29012 | Add session-management plugin: fork/move conversations across directories | OPEN | Manages conversations across directories. |
+| #25879 | Add persistent-identity plugin: name and memory for Claude Code instances | OPEN | Adds persistent names and memory for instances. |
+| #29097 | fix(security-guidance): output structured JSON so model receives security warnings | OPEN | Improves security warning delivery to models. |
+| #29095 | fix(hookify): search both project and home directories for rule files | OPEN | Ensures hookify rules from all locations are found. |
+| #29092 | fix(security-guidance): normalize backslashes in path checks for Windows | OPEN | Fixes Windows path checks for security guidance. |
+| #29077 | RFC: Fix race condition in ~/.claude.json concurrent writes | CLOSED | Addresses critical `~/.claude.json` corruption. |
+| #13307 | fix: portable shebang should use env for bash | OPEN | Improves portability of bash shebangs. |
 
 ### Trends
-- [pain] Significant issues persist with Windows platform stability and TUI/API functionality.
-- [pain] User permission prompts are repeatedly irritating and require persistent solutions.
-- [pain] Folder selection and remote control session management have usability issues.
-- [feature] Users are requesting more customization options for UI and terminal themes.
-- [feature] There's a desire for better programmatic access to subscription usage data.
-- [pain] Plugin installation and recognition issues continue to surface across platforms.
-- [pain] High volume of reported bugs related to session management and ghost sessions.
+- [pain] Persistent issues with Windows installation and runtime behavior.
+- [pain] Plugin and hook integration continues to be a source of bugs and feature requests.
+- [pain] Performance issues and unexpected limit resets affecting users.
+- [feature] Enhancements for session management and conversation handling are in development.
+- [feature] Requests for improved customization and theming persist.
+- [pain] macOS specific bugs impacting remote control and plugin functionality.
+- [pain] Race conditions leading to data corruption require ongoing attention.
 
 </details>
 
@@ -129,50 +129,50 @@ The community is actively seeking to improve the robustness, security, and disco
 <summary><strong>OpenAI Codex</strong> — <a href="https://github.com/openai/codex">openai/codex</a></summary>
 
 ### Highlights
-- New direct install scripts for macOS and Linux are now available as GitHub release assets.
-- Significant activity around Windows OS issues, including app installation failures and extension malfunctions.
-- Developments in real-time collaboration, plugin support, and security features are underway.
+- macOS Intel support and Universal build requested for Codex Desktop App.
+- Release `rust-v0.106.0` includes direct install scripts and expanded app-server thread API.
+- Several issues highlight Windows-specific bugs and CLI interactive mode limitations.
 
 ### Releases
 - rust-v0.107.0-alpha.3: Release 0.107.0-alpha.3
 - rust-v0.107.0-alpha.2: Release 0.107.0-alpha.2
-- rust-v0.106.0: Added direct install scripts for macOS/Linux; expanded app-server v2 thread API.
+- rust-v0.106.0: Added direct install script for macOS/Linux, expanded app-server v2 thread API.
 - rust-v0.107.0-alpha.1: Release 0.107.0-alpha.1
-- rust-v0.106.0-alpha.11: Release 0.106.0-alpha.11
 - rust-v0.106.0-alpha.9: Release 0.106.0-alpha.9
+- rust-v0.106.0-alpha.11: Release 0.106.0-alpha.11
 
 ### Hot Issues
 | # | Title | 💬 | 👍 | Why it matters |
 |---|---|---|---|---|
-#10410 | [enhancement, app] Codex Desktop App: macOS Intel (x86_64) support / Universal build | 89 | 105 | Critical for Intel Mac users to use the desktop app. |
-#10384 | [enhancement, tool-calls] Make request_user_input tool available in code mode | 24 | 97 | Enhances code mode functionality with user interaction. |
-#10726 | [bug, windows-os, TUI] Codex CLI Scroll issue | 16 | 6 | Affects usability of CLI on Windows. |
-#12827 | [bug, TUI] Voice transcription no-op | 13 | 2 | Voice feature broken in TUI. |
-#9046 | [bug, context] Codex ran out of room in the model's context window. | 11 | 0 | Recurring context window limitations. |
-#12161 | [bug, windows-os, extension] Codex IDE keeps getting stuck on "Thinking" | 9 | 1 | IDE extension unresponsiveness on Windows. |
-#12916 | [bug, windows-os, azure, CLI] invalid_request_error Failed to parse request body as json | 7 | 2 | JSON parsing error for Azure CLI. |
-#12241 | [bug, CLI, tool-calls] Failed to apply patch consantly | 7 | 1 | Patch application failures in CLI. |
+| https://github.com/openai/codex/issues/10410 | [OPEN] [enhancement, app] Codex Desktop App: macOS Intel (x86_64) support / Universal build | 89 | 105 | Essential for broader macOS user adoption and compatibility. |
+| https://github.com/openai/codex/issues/10384 | [CLOSED] [enhancement, tool-calls] Make request_user_input tool available in code mode | 24 | 97 | Enables more interactive code generation and user input handling. |
+| https://github.com/openai/codex/issues/10726 | [OPEN] [bug, windows-os, TUI] Codex CLI Scroll issue | 16 | 6 | Impacts usability and readability on Windows. |
+| https://github.com/openai/codex/issues/12827 | [CLOSED] [bug, TUI] Voice transcription no-op | 13 | 2 | Affects functionality of voice input features. |
+| https://github.com/openai/codex/issues/9046 | [OPEN] [bug, context] Codex ran out of room in the model's context window. Start a new thread or clear earlier history before retrying. | 11 | 0 | Limits long conversations and complex requests. |
+| https://github.com/openai/codex/issues/12161 | [OPEN] [bug, windows-os, extension] Codex IDE keeps getting stuck on "Thinking" | 9 | 1 | Hinders development workflow within IDEs. |
+| https://github.com/openai/codex/issues/12916 | [OPEN] [bug, windows-os, azure, CLI] invalid_request_error Failed to parse request body as json with error: Expected end of string, but instead reached end of data. LineNumber: 0 | BytePositionInLine: | 7 | 2 | Causes request failures for Azure users. |
+| https://github.com/openai/codex/issues/11007 | [CLOSED] [bug, windows-os, extension] Chat mode gone in VSCode extension! | 7 | 1 | Regression in IDE extension functionality. |
 
 ### Key PRs
 | # | Title | Status | What it does |
 |---|---|---|---|
-#12969 | app-server: source /feedback logs from sqlite at trace level | OPEN | Improves app-server logging and feedback collection. |
-#12864 | feat: load from plugins | OPEN | Enables loading and integration of plugins. |
-#12560 | [oai] app-server: Replay pending item requests on `thread/resume` | OPEN | Improves state synchronization for paused threads. |
-#12968 | notify: include client in legacy hook payload | CLOSED | Distinguishes notification sources (TUI vs. app clients). |
-#10431 | feat(devcontainer): add a new devcontainer profile for using codex securely | CLOSED | Secure dev environment for contributors and users. |
-#11566 | fix: run windows release signing on GitHub-hosted x64 runners | CLOSED | Optimizes Windows release signing process. |
-#12981 | Add realtime websocket tracing | CLOSED | Enhances debugging of real-time websocket communication. |
-#12972 | Add model availability NUX metadata | CLOSED | Introduces structured metadata for model availability tips. |
+| https://github.com/openai/codex/pull/12969 | app-server: source /feedback logs from sqlite at trace level | OPEN | Improves feedback log collection and debugging. |
+| https://github.com/openai/codex/pull/12864 | feat: load from plugins | OPEN | Enables loading and integration of plugins. |
+| https://github.com/openai/codex/pull/12560 | [oai] app-server: Replay pending item requests on `thread/resume` | OPEN | Ensures UI state sync after reconnects and across clients. |
+| https://github.com/openai/codex/pull/12968 | notify: include client in legacy hook payload | CLOSED | Allows downstream hooks to identify the calling Codex client. |
+| https://github.com/openai/codex/pull/10431 | feat(devcontainer): add a new devcontainer profile for using codex securely | CLOSED | Modernizes devcontainer setup for contributors and users. |
+| https://github.com/openai/codex/pull/11566 | fix: run windows release signing on GitHub-hosted x64 runners | CLOSED | Optimizes Windows release signing for faster builds. |
+| https://github.com/openai/codex/pull/12981 | Add realtime websocket tracing | CLOSED | Enhances debugging by logging realtime transport events. |
+| https://github.com/openai/codex/pull/12972 | Add model availability NUX metadata | CLOSED | Exposes model availability data via app-server API. |
 
 ### Trends
-- Persistent issues with Windows OS, particularly for the CLI and IDE extensions. [pain]
-- macOS Intel (x86_64) support for the desktop app remains a high priority. [feature]
-- Enhancements to real-time features and collaboration are actively being developed. [feature]
-- Several bugs related to tool execution and patch application persist across different clients. [pain]
-- Requests for improved context window management and error handling continue. [feature]
-- Authentication and login flows, especially for MCP, see ongoing fixes. [pain]
-- Plugin support and system integration are key areas of development. [feature]
+- [feature] macOS Intel support and Universal builds for desktop app.
+- [feature] Enhanced app-server thread API with experimental realtime endpoints.
+- [pain] Windows-specific bugs in CLI, extensions, and app rendering.
+- [pain] CLI interactive mode not working as expected on Windows.
+- [feature] Improved voice transcription functionality and integration.
+- [pain] Issues with context window limitations and persistent "Thinking" states.
+- [feature] Plugin loading and integration for extended functionality.
 
 </details>
 
@@ -180,46 +180,45 @@ The community is actively seeking to improve the robustness, security, and disco
 <summary><strong>OpenCode</strong> — <a href="https://github.com/anomalyco/opencode">anomalyco/opencode</a></summary>
 
 ### Highlights
-- Core release v1.2.15 addresses Windows segfaults with Bun v1.3.10 stable and splits TUI/server configuration.
-- Several issues highlight ongoing challenges with model compatibility (GPT-5.3 Codex, Mistral 3), Windows-specific Bun crashes, and database corruption.
-- New providers and features, including Bailian Coding Plan support and experimental hashline edit mode, are being integrated.
+- Core release v1.2.15 addresses Windows segfaults and separates TUI/server configurations.
+- Robust discussion around Windows-specific Bun crashes and segmentation faults.
+- Continued investigation into model compatibility issues, particularly with new Codex versions.
 
 ### Releases
-- v1.2.15 Core: Fix most segfaults on Windows with Bun v1.3.10 stable, split TUI and server configuration.
-- v1.2.15 Desktop: Remove interactive shell flag from sidecar spawn on macOS, fix permissions and keyboard navigation.
+- v1.2.15: Fixes Windows segfaults with Bun v1.3.10 stable, splits TUI and server configs.
 
 ### Hot Issues
 | # | Title | 💬 | 👍 | Why it matters |
 |---|---|---|---|---|
-| [#11112](https://github.com/anomalyco/opencode/issues/11112) | [OPEN] [bug] always stuck at “Preparing write...” | 32 | 13 | Persistent "Preparing write..." issue impacts core functionality. |
-| [#4112](https://github.com/anomalyco/opencode/issues/4112) | [CLOSED] [bug] [MiniMax M2] Agent stop at the middle of the work | 29 | 0 | Agent hangs during work, interrupting workflows. |
-| [#5034](https://github.com/anomalyco/opencode/issues/5034) | [OPEN] [bug] Ministral 3 support: error "Only user, assistant and tool roles are supported, got system" | 16 | 9 | Lack of Mistral 3 support blocks usage of a new powerful model. |
-| [#11157](https://github.com/anomalyco/opencode/issues/11157) | [OPEN] [bug] Compaction fails with 400 Bad Request when using GitHub Copilot Enterprise | 10 | 1 | Compaction fails with Copilot Enterprise, impacting conversation summarization. |
-| [#13312](https://github.com/anomalyco/opencode/issues/13312) | [OPEN] Codex 5.3 not working with copilot | 8 | 39 | Widely reported issue with Codex 5.3 model support. |
-| [#12839](https://github.com/anomalyco/opencode/issues/12839) | [OPEN] gpt-5.3-codex fails with 404 when authenticated via OpenAI API key | 6 | 3 | `gpt-5.3-codex` inaccessible via standard OpenAI API key. |
-| [#4989](https://github.com/anomalyco/opencode/issues/4989) | [CLOSED] [bug, opentui] opencode often abruptly stops responding with Minimax M2 | 6 | 0 | Frequent unresponsiveness with Minimax M2 provider. |
-| [#15021](https://github.com/anomalyco/opencode/issues/15021) | [OPEN] [bug, windows] Bug: Bun JIT crash (Segmentation fault) caused by enterprise security DLL injection | 5 | 0 | Windows enterprise security software causes Bun crashes. |
+| [#11112](https://github.com/anomalyco/opencode/issues/11112) | [OPEN] [bug] always stuck at “Preparing write...” | 32 | 13 | Ongoing issue with core write functionality, impacting basic operations. |
+| [#4112](https://github.com/anomalyco/opencode/issues/4112) | [CLOSED] [bug] [MiniMax M2] Agent stop at the middle of the work | 29 | 0 | Historical bug indicating potential instability with specific providers. |
+| [#5034](https://github.com/anomalyco/opencode/issues/5034) | [OPEN] [bug] Ministral 3 support: error "Only user, assistant and tool roles are supported, got system" | 16 | 9 | Shows challenges integrating newer LLM versions with existing OpenAI role expectations. |
+| [#11157](https://github.com/anomalyco/opencode/issues/11157) | [OPEN] [bug] Compaction fails with 400 Bad Request when using GitHub Copilot Enterprise | 10 | 1 | Highlights issues with specific enterprise providers and core summarization features. |
+| [#13312](https://github.com/anomalyco/opencode/issues/13312) | [OPEN] Codex 5.3 not working with copilot | 8 | 39 | High user interest in using latest Codex models with GitHub Copilot. |
+| [#15305](https://github.com/anomalyco/opencode/issues/15021) | [OPEN] [bug, windows, core] The read tool should return the exact file content without any additional markers or prefixes. | 6 | 0 | Core functionality bug affecting accurate file content retrieval on Windows. |
+| [#12839](https://github.com/anomalyco/opencode/issues/12839) | [OPEN] gpt-5.3-codex fails with 404 when authenticated via OpenAI API key | 6 | 3 | Specific model not working with standard OpenAI authentication. |
+| [#4989](https://github.com/anomalyco/opencode/issues/4989) | [CLOSED] [bug, opentui] opencode often abruptly stops responding with Minimax M2 | 6 | 0 | Past issue with provider instability, possibly resolved but noted. |
 
 ### Key PRs
 | # | Title | Status | What it does |
 |---|---|---|---|
-| [#15335](https://github.com/anomalyco/opencode/pull/15335) | desktop: add latest.json finalizer script | OPEN | Prevents `latest.json` overwrites for desktop updater. |
-| [#15102](https://github.com/anomalyco/opencode/pull/15102) | feat(provider): add bailian-coding-plan as native provider | OPEN | Integrates Alibaba Cloud Model Studio Coding Plan as a provider. |
-| [#12829](https://github.com/anomalyco/opencode/pull/12829) | [contributor] feat(app): embed web ui in binary | OPEN | Bundles web UI into the binary for offline and sync use. |
-| [#15320](https://github.com/anomalyco/opencode/pull/15320) | fix(opencode): handle context overflow error by triggering compaction | CLOSED | Fixes context overflow by automatically triggering compaction. |
-| [#9545](https://github.com/anomalyco/opencode/pull/9545) | feat(usage): unified usage tracking with auth refresh (#9281) | OPEN | Unifies provider usage tracking and handles token refreshes. |
-| [#13854](https://github.com/anomalyco/opencode/pull/13854) | [needs:issue] fix(tui): stop streaming markdown/code after message completes | OPEN | Correctly renders completed messages in TUI. |
-| [#14677](https://github.com/anomalyco/opencode/pull/14677) | [contributor, beta] feat: add experimental hashline edit mode with dual-schema support | OPEN | Introduces experimental hashline editing with dual-schema support. |
-| [#15333](https://github.com/anomalyco/opencode/pull/15333) | [needs:compliance] fix: show opencode-cli in exit message when using CLI | OPEN | Corrects exit message for `opencode-cli`. |
+| [#15269](https://github.com/anomalyco/opencode/pull/15269) | feat(ui): make edited file references clickable in desktop session UI | OPEN | Adds clickable file references in desktop UI for easier access. |
+| [#15335](https://github.com/anomalyco/opencode/pull/15335) | [beta] desktop: add latest.json finalizer script | OPEN | Improves updater reliability by finalizing manifest before public release. |
+| [#15102](https://github.com/anomalyco/opencode/pull/15102) | feat(provider): add bailian-coding-plan as native provider | OPEN | Integrates Alibaba Cloud's model studio as a new native provider. |
+| [#12829](https://github.com/anomalyco/opencode/pull/12829) | [contributor] feat(app): embed web ui in binary | OPEN | Bundles web UI into the binary for sync and air-gapped use. |
+| [#15320](https://github.com/anomalyco/opencode/pull/15320) | fix(opencode): handle context overflow error by triggering compaction | CLOSED | Automatically triggers compaction to resolve context overflow errors. |
+| [#9545](https://github.com/anomalyco/opencode/pull/9545) | feat(usage): unified usage tracking with auth refresh (#9281) | OPEN | Unifies provider usage tracking and handles automatic token refreshes. |
+| [#13854](https://github.com/anomalyco/opencode/pull/13854) | [needs:issue] fix(tui): stop streaming markdown/code after message completes | OPEN | Correctly stops streaming markdown/code for completed messages in TUI. |
+| [#14677](https://github.com/anomalyco/opencode/pull/14677) | [contributor, beta] feat: add experimental hashline edit mode with dual-schema support | OPEN | Introduces experimental hashline edit mode with dual-schema support. |
 
 ### Trends
-- [pain] Windows-specific Bun crashes persist due to security software/DLL injection.
-- [pain] Intermittent database corruption issues reported, especially with concurrent sessions on shared storage.
-- [pain] Model compatibility remains a concern: Mistral 3 and newer GPT Codex versions are not fully supported.
-- [feature] Integration of new providers and models (Bailian Coding Plan, Qwen3.5 variants).
-- [feature] Enhancements to TUI and desktop app usability (mouse paste support, sidebar resizing, deeplinks).
-- [feature] Improved usage tracking and authentication management across providers.
-- [feature] Requests for richer custom tool capabilities, including image support.
+- [pain] Frequent Windows-specific Bun crashes and segmentation faults.
+- [pain] Issues with model compatibility, especially newer versions like Codex 5.3 and Mistral 3.
+- [pain] Database corruption concerns when running concurrent sessions or on shared file systems.
+- [feature] Desire for improved custom tool capabilities, including image support.
+- [feature] Enhanced control and visibility for plugin tool overrides.
+- [feature] Requests for better session management and data cleanup.
+- [pain] Encountering `400 Bad Request` errors with specific providers/models during compaction.
 
 </details>
 
