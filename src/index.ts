@@ -82,7 +82,7 @@ function requireEnv(name: string): string {
 
 async function main(): Promise<void> {
   requireEnv("GITHUB_TOKEN");
-  requireEnv("ANTHROPIC_API_KEY");
+  // requireEnv("ANTHROPIC_API_KEY");
 
   const now     = new Date();
   const since   = new Date(now.getTime() - 24 * 60 * 60 * 1000);
