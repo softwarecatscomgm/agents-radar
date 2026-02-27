@@ -5,7 +5,8 @@
   "packageManager": "pnpm@9.15.9",
   "scripts": {
     "start": "tsx src/index.ts",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "postversion": "git push --follow-tags"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.36.3"
