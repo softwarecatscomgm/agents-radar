@@ -1,6 +1,6 @@
 # OpenClaw Ecosystem Digest 2026-02-27
 
-> Issues: 500 | PRs: 500 | Projects tracked: 3 | Generated: 2026-02-27 07:13 UTC
+> Issues: 500 | PRs: 500 | Projects tracked: 3 | Generated: 2026-02-27 11:34 UTC
 
 - [OpenClaw](https://github.com/openclaw/openclaw)
 - [PicoClaw](https://github.com/sipeed/picoclaw)
@@ -11,8 +11,8 @@
 ## OpenClaw Deep Report
 
 ### Highlights
-- External Secrets Management is now fully supported with a `openclaw secrets` workflow for auditing, configuring, applying, and reloading secrets with runtime snapshot activation.
-- Strict validation, safer migration scrubbing, ref-only auth-profile support, and dedicated documentation have been introduced.
+- External Secrets Management: New `openclaw secrets` workflow (`audit`, `configure`, `apply`, `reload`) for enhanced security.
+- Runtime snapshot activation and strict validation for `secrets apply` ensure safer secret management.
 
 ### Releases
 - v2026.2.26: openclaw 2026.2.26
@@ -21,80 +21,79 @@
 ### Hot Issues
 | # | Title | 💬 | 👍 | Why it matters |
 |---|---|---|---|---|
-| [#3460](https://github.com/openclaw/openclaw/issues/3460) | [OPEN] [enhancement] Internationalization (i18n) & Localization Support | 71 | 0 | Expanding user base and accessibility globally. |
-| [#26534](https://github.com/openclaw/openclaw/issues/26534) | Add DingTalk as a first-install channel option | 20 | 6 | Improves initial setup experience and platform integration. |
-| [#3917](https://github.com/openclaw/openclaw/issues/3917) | [CLOSED] [bug, r: support] [Bug]: windows installer error | 18 | 1 | Fixes critical installation failure on Windows. |
-| [#13991](https://github.com/openclaw/openclaw/issues/13991) | [CLOSED] [enhancement] [Proposal] Associative Hierarchical Memory: Human-Like Recall for Agent Memory Systems | 18 | 0 | Introduces advanced memory capabilities for agents. |
-| [#7631](https://github.com/openclaw/openclaw/issues/7631) | [OPEN] [bug] Windows: openclaw plugins install fails with spawn EINVAL | 16 | 1 | Resolves recurring plugin installation issues on Windows. |
-| [#23861](https://github.com/openclaw/openclaw/issues/23861) | [CLOSED] [bug] [Bug]: Open claw installation fails on npm: ! npm install failed for openclaw@latest | 16 | 0 | Fixes a widespread npm installation failure. |
-| [#7649](https://github.com/openclaw/openclaw/issues/7649) | [OPEN] [bug] Matrix: bot cannot verify its own account for E2EE (requestOwnUserVerification missing) | 12 | 2 | Restores secure communication in Matrix channels. |
-| [#11283](https://github.com/openclaw/openclaw/issues/11283) | [OPEN] [bug] [Bug]: OpenClaw tries to use local Ollama CLI instead of remote API endpoint | 11 | 2 | Corrects Ollama integration for remote API usage. |
+| #26534 | Add DingTalk as a first-install channel option | 21 | 6 | Improves onboarding for DingTalk users. |
+| #3917 | [Bug]: windows installer error | 18 | 1 | Fixes broken Windows installation for new users. |
+| #7631 | Windows: openclaw plugins install fails with spawn EINVAL | 16 | 1 | Enables plugin installation on Windows. |
+| #23861 | Open claw installation fails on npm: ! npm install failed for openclaw@latest | 16 | 0 | Resolves critical installation failures. |
+| #21653 | Custom API providers defaulted to a 4096-token context window, causing the completion to fail | 14 | 0 | Prevents completion failures with custom providers. |
+| #18677 | Feature Proposal: Security Scan Hook API for skill:install | 14 | 0 | Enhances security for skill installations. |
+| #11797 | [Bug]: Mattermost plugin does not receive channel message events via WebSocket | 12 | 1 | Restores Mattermost message event processing. |
+| #11283 | [Bug]: OpenClaw tries to use local Ollama CLI instead of remote API endpoint | 11 | 2 | Fixes Ollama remote connectivity issues. |
 
 ### Key PRs
 | # | Title | Status | What it does |
 |---|---|---|---|
-| [#28424](https://github.com/openclaw/openclaw/pull/28424) | fix(sessions): use agentId instead of storePath for transcriptPath resolution | OPEN | Correctly resolves session transcript paths. |
-| [#28418](https://github.com/openclaw/openclaw/pull/28418) | fix(typing): skip typing indicator for isolated cron sessions | OPEN | Prevents phantom "typing..." for background jobs. |
-| [#28419](https://github.com/openclaw/openclaw/pull/28419) | fix(cron): harden nextWakeAtMs against corrupt state | OPEN | Stabilizes cron scheduler against bad job state. |
-| [#25531](https://github.com/openclaw/openclaw/pull/25531) | docs: add official Development section with codebase analysis docs | OPEN | Enhances developer documentation. |
-| [#28422](https://github.com/openclaw/openclaw/pull/28422) | fix(models): honor explicit minimax-portal apiKey over oauth placeholder | OPEN | Correctly uses explicit API keys over OAuth. |
-| [#28421](https://github.com/openclaw/openclaw/pull/28421) | fix(infra): clamp heartbeat setTimeout delay to prevent 32-bit overflow loop [AI] | OPEN | Prevents potential gateway crashes from long heartbeats. |
-| [#20969](https://github.com/openclaw/openclaw/pull/20969) | Add DeJoy channel extension (Matrix-compatible protocol) | OPEN | Adds dedicated support for DeJoy protocol. |
-| [#27880](https://github.com/openclaw/openclaw/pull/27880) | feat(tts/talk): Add minimax as tts provider | OPEN | Integrates MiniMax Speech as a TTS provider. |
+| #28638 | fix(discord): make slow listener threshold configurable | OPEN | Allows configuring Discord listener timeout. |
+| #28633 | Reply: skip empty block payload so Telegram gets no blank message bef… | OPEN | Prevents blank messages in Telegram. |
+| #27880 | feat(tts/talk): Add minimax as tts provider | OPEN | Integrates MiniMax for text-to-speech. |
+| #27960 | feat(talk): configurable TTS provider support | OPEN | Adds custom TTS provider options for Talk Mode. |
+| #17113 | Windows: prefer PowerShell 7 (pwsh) in shell resolution | OPEN | Improves shell resolution on Windows. |
+| #13873 | fix(sandbox): prevent Windows PATH from poisoning docker exec | OPEN | Prevents Windows PATH issues in Docker exec. |
+| #24278 | Handle dev=0 on Windows in sameFileIdentity | OPEN | Fixes file identity checks on Windows. |
+| #26049 | test(bash-tools): fix Windows CI path prepend assertion | OPEN | Corrects Windows CI test for PATH prepending. |
 
 ### Bugs
 | # | Title | Severity | Fix PR? |
 |---|---|---|---|
-| [#3917](https://github.com/openclaw/openclaw/issues/3917) | [Bug]: windows installer error | Critical | Yes |
-| [#7631](https://github.com/openclaw/openclaw/issues/7631) | [bug] Windows: openclaw plugins install fails with spawn EINVAL | High | No |
-| [#11283](https://github.com/openclaw/openclaw/issues/11283) | [Bug]: OpenClaw tries to use local Ollama CLI instead of remote API endpoint | High | No |
-| [#1405](https://github.com/openclaw/openclaw/issues/1405) | [Bug]: OpenRouter API rate limit failover | High | No |
-| [#9157](https://github.com/openclaw/openclaw/issues/9157) | Performance: Workspace file injection wastes 93.5% of token budget | High | No |
+| #3917 | [Bug]: windows installer error | High | Yes |
+| #7631 | [Bug]: Windows: openclaw plugins install fails with spawn EINVAL | High | No |
+| #23861 | [Bug]: Open claw installation fails on npm: ! npm install failed for openclaw@latest | High | No |
+| #21653 | [Bug]: Custom API providers defaulted to a 4096-token context window, causing the completion to fail | Medium | No |
+| #11797 | [Bug]: Mattermost plugin does not receive channel message events via WebSocket | Medium | No |
 
 ### Trends
-- Growing number of issues related to Windows installation and plugin failures.
-- Frequent reports of API authentication and rate limit issues across providers.
-- Demand for broader channel support and improved integration with new services.
-- Continued focus on performance optimizations and token efficiency.
-- User requests for more intuitive model selection and management.
-- Ongoing challenges with specific platform integrations (e.g., Matrix, Discord).
-- Increased interest in advanced memory and agent capabilities.
+- Increasing reports of installation and plugin issues on Windows.
+- Growing demand for more configuration options and flexibility in providers and features.
+- User frustration with API rate limits and authentication errors across various services.
+- Need for improved error handling and graceful degradation during network instability.
+- Feature requests for enhanced channel integrations and agent communication.
+- Security enhancements are a recurring theme, with new secrets management features emerging.
+- Bug fixes related to specific channel integrations (Discord, Telegram, Mattermost) are frequent.
 
 ---
 
 ## Cross-Ecosystem Comparison
 
 ### Ecosystem Snapshot
-The LLM agent framework ecosystem shows robust activity, with OpenClaw leading in feature maturity and stability, while PicoClaw and NanoClaw focus on rapid expansion of channel support and core functionality improvements. All projects indicate a strong community drive towards broader integration and enhanced agent capabilities.
+The Claw ecosystem is actively expanding, with OpenClaw leading in feature stability and security enhancements. PicoClaw shows robust development momentum with broad channel integration and LLM compatibility efforts. NanoClaw focuses on channel expansion and WhatsApp stability, indicating a strong push for broader utility.
 
 ### Activity
-| Project    | Issues | PRs | Releases     | Momentum |
-|------------|--------|-----|--------------|----------|
-| OpenClaw   | 8      | 8   | 2            | 🟢       |
-| PicoClaw   | 8      | 8   | 0            | 🟢       |
-| NanoClaw   | 7      | 8   | 0            | 🟡       |
+| Project | Issues | PRs | Releases | Momentum |
+|---------|--------|-----|----------|----------|
+| OpenClaw | 9 | 8 | 2 | 🟡 steady |
+| PicoClaw | 8 | 8 | 0 | 🟢 rapid |
+| NanoClaw | 3 | 8 | 0 | 🟢 rapid |
 
 ### OpenClaw vs Peers
-- OpenClaw offers mature secrets management, a significant advantage over peers.
-- OpenClaw's stability and fewer critical bugs suggest a more mature codebase.
-- PicoClaw and NanoClaw are rapidly expanding channel support, a key differentiator.
-- NanoClaw has slower issue resolution and merge rates compared to OpenClaw and PicoClaw.
-- OpenClaw's roadmap includes advanced memory systems, a futuristic direction not yet evident in peers.
+- OpenClaw offers mature external secrets management, a feature not as prominently highlighted in peers.
+- PicoClaw exhibits significantly faster PR velocity, suggesting a more agile development cycle for new features.
+- NanoClaw's core focus on WhatsApp stability and recovery addresses a critical pain point absent in the other projects' top issues.
+- OpenClaw's release cadence (v2026.2.26) indicates a more established product lifecycle compared to PicoClaw and NanoClaw.
+- PicoClaw's inclusion of a community-driven logo design highlights a strong engagement strategy.
 
 ### Shared Directions
-- Expanding channel support to include more messaging platforms (PicoClaw, NanoClaw).
-- Improving integration stability and bug fixing for existing channels like Discord and Telegram (OpenClaw, PicoClaw, NanoClaw).
-- Enhancing file and attachment handling capabilities for richer communication (PicoClaw, NanoClaw).
-- Addressing LLM provider compatibility and configuration challenges (OpenClaw, PicoClaw, NanoClaw).
-- Implementing more robust plugin and extension architectures for extensibility (PicoClaw, NanoClaw).
-- Optimizing performance and addressing token efficiency (OpenClaw).
+- Expanding channel integrations (PicoClaw, NanoClaw)
+- Enhancing LLM provider compatibility and configuration (OpenClaw, PicoClaw, NanoClaw)
+- Improving media file handling and sending capabilities (PicoClaw, NanoClaw)
+- Stabilizing and enhancing connection recovery for messaging platforms (OpenClaw, PicoClaw, NanoClaw)
+- Addressing installation and setup complexities for new users (OpenClaw, NanoClaw)
 
 ### Trend Signals
-- Growing demand for cross-platform messaging integration.
-- Increased focus on agent reliability and error handling (e.g., time confusion, message loops).
-- Drive for enhanced security, particularly around secrets management and dependency vulnerabilities.
-- Development of advanced AI memory and recall mechanisms.
-- The need for flexible deployment and sandboxing options.
+- Growing demand for diverse communication channel integrations (e.g., Signal, WhatsApp, WeCom).
+- Increasing emphasis on robust LLM provider support and flexible configuration.
+- Critical need for reliable media file handling across various platforms.
+- User pain points center on connectivity issues, message delivery failures, and context management.
+- Security and secrets management are becoming foundational features.
 
 ---
 
@@ -104,54 +103,54 @@ The LLM agent framework ecosystem shows robust activity, with OpenClaw leading i
 <summary><strong>PicoClaw</strong> — <a href="https://github.com/sipeed/picoclaw">sipeed/picoclaw</a></summary>
 
 ### Highlights
-- Active development continues with a high volume of PRs, focusing on new channel integrations and feature enhancements.
-- Several critical bugs are being addressed, including Telegram message handling, Groq API compatibility, and Discord image sending issues.
-- File attachment support and improved agent iteration limits are key feature development areas.
+- Significant activity in PRs, with 123 opened yesterday, indicating active development.
+- Several issues focus on improving channel capabilities and handling media files.
+- Key PRs address LLM provider compatibility and retry mechanisms, crucial for stability.
 
 ### Releases
 None
 
 ### Hot Issues
 | # | Title | 💬 | 👍 | Why it matters |
-|---|---|---|---|---|
-| #310 | [BUG] Telegram messages stuck on "Thinking..." due to allowlist mismatch | 7 | 0 | Prevents Telegram users from receiving timely responses. |
-| #619 | Bug: downloaded media files deleted before async consumer reads them | 7 | 0 | Data loss for media handling, impacting user experience. |
-| #99 | Feat: Add Whatsapp channel | 5 | 0 | Expands platform reach to a major messaging service. |
-| #61 | Implement file sending and receiving in chat. | 5 | 4 | Essential for rich communication and data exchange. |
-| #441 | [enhancement] Add file attachment support to message tool for Discord/Telegram | 5 | 0 | Enables agents to send files, enhancing utility. |
-| #639 | [BUG] Picoclaw can't send image over discord like OpenClaw | 5 | 1 | Broken image sharing on Discord, hindering communication. |
-| #285 | Discord integration - occasionaly error during responses | 5 | 0 | Unreliable Discord responses impact user interaction. |
-| #381 | [BUG]Telegram messages show raw JSON tool calls instead of formatted content | 5 | 1 | Poor user experience with unreadable tool call output. |
+|---|-------|----|----|----------------|
+| #100 | [CLOSED] [Possible BUG] "I've completed processing but have no response to give." | 8 | 1 | Indicates potential agent processing failures. |
+| #310 | [CLOSED] [type: bug] [BUG] Telegram messages stuck on "Thinking..." due to allowlist mismatch in HandleMessage | 7 | 0 | Blocks user interaction on Telegram. |
+| #619 | [CLOSED] Bug: downloaded media files deleted before async consumer reads them | 7 | 0 | Leads to lost or inaccessible media. |
+| #290 | [OPEN] [priority: high, type: roadmap] Feature: Implement Model Context Protocol (MCP) support for extensible operations | 5 | 4 | Essential for expanding PicoClaw's integration capabilities. |
+| #297 | [OPEN] [priority: medium, type: roadmap] Design: Create a cute Mantis Shrimp logo for PicoClaw! | 5 | 0 | Community engagement and branding effort. |
+| #778 | [OPEN] [type: bug] [BUG] Summary contains no relevant context | 5 | 0 | Poor summaries hinder understanding and debugging. |
+| #99 | [OPEN] Feat: Add Whatsapp channel | 5 | 0 | User request for a popular communication channel. |
+| #61 | [OPEN] Implement file sending and receiving in chat. | 5 | 4 | Core functionality for richer chat interactions. |
 
 ### Key PRs
 | # | Title | Status | What it does |
-|---|---|---|---|
-| #640 | fix: ShengSuanYun default BaseUrl configuration and model ID normalize. | OPEN | Corrects configuration for a specific AI provider. |
-| #473 | feat(hooks/plugin): add lifecycle hooks + phase-1 plugin contract | OPEN | Introduces plugin system for extensibility. |
-| #825 | feat(feishu): implement TypingCapable interface with emoji reaction | CLOSED | Adds typing indicator for Feishu channel. |
-| #830 | feat(channels): add google chat channel support | OPEN | Integrates PicoClaw with Google Chat. |
-| #853 | feat(discord): add proxy support and tests | OPEN | Enhances Discord connectivity with proxy support. |
-| #852 | * update wechat qrcode & delete unused mp4 file | CLOSED | Minor updates for Wechat integration. |
-| #655 | Added a native WhatsApp channel implementation. | OPEN | Adds native support for the WhatsApp channel. |
-| #851 | feat(providers): add Cloudflare AI Gateway support | OPEN | Integrates Cloudflare AI Gateway as a provider. |
+|---|-------|--------|--------------|
+| #872 | Add WeCom AIBot channel implementation and tests | OPEN | Adds a new WeCom AIBot channel integration. |
+| #861 | refactor(modernize): apply safe modernize fixes | OPEN | Applies standard code modernization and style fixes. |
+| #866 | feat(retry): complete bounded retry policy for LLM calls | OPEN | Implements robust LLM call retry logic. |
+| #871 | fix: preserve tool call/response pairing in forceCompression | OPEN | Fixes tool call pairing issues during compression. |
+| #655 | Added a native WhatsApp channel implementation. | OPEN | Introduces a native implementation for WhatsApp. |
+| #802 | Fix Reasoning Content Being Silently Dropped by Adding Channel-Aware Reasoning Routing #645 | CLOSED | Ensures reasoning output is correctly routed and not lost. |
+| #402 | feat: mail channels ; support long-lived connection and attachment | CLOSED | Adds email channel support for input and output. |
+| #867 | fix: use Anthropic SDK provider for anthropic protocol with API key | OPEN | Correctly uses Anthropic SDK for Anthropic provider. |
 
 ### Bugs
 | # | Title | Severity | Fix PR? |
-|---|---|---|---|
-| #310 | [BUG] Telegram messages stuck on "Thinking..." due to allowlist mismatch | critical | No |
-| #619 | Bug: downloaded media files deleted before async consumer reads them | high | No |
-| #639 | [BUG] Picoclaw can't send image over discord like OpenClaw | high | No |
-| #748 | [BUG] Groq API compatibility: tool call format error | high | No |
-| #651 | [BUG] Incorrect volume mount path for config.json in docker-compose.yml causes container to crash | critical | No |
+|---|-------|----------|---------|
+| #100 | [Possible BUG] "I've completed processing but have no response to give." | High | No |
+| #310 | [BUG] Telegram messages stuck on "Thinking..." due to allowlist mismatch in HandleMessage | High | No |
+| #619 | Bug: downloaded media files deleted before async consumer reads them | High | No |
+| #778 | [BUG] Summary contains no relevant context | Medium | No |
+| #639 | [BUG] Picoclaw can't send image over discord like OpenClaw | High | No |
 
 ### Trends
-- Growing demand for support of new messaging channels (WhatsApp, Google Chat, etc.).
-- Ongoing efforts to improve Telegram and Discord integration stability and functionality.
-- Recurring issues with message length limits across various channels, especially Telegram.
-- Strong focus on enhancing file and attachment handling capabilities.
-- Investigations into various LLM provider compatibility and configuration issues (Groq, Cloudflare).
-- Feature requests for improved agent iteration management and tool usage.
-- Development of more robust plugin and extension architectures.
+- Requests for new channel integrations (e.g., WhatsApp, WeCom).
+- Issues with media file handling across different channels.
+- Need for improved LLM provider compatibility and error handling.
+- Bugs causing messages to get stuck or not deliver correctly.
+- Feature requests for better agent context management and multi-agent collaboration.
+- User feedback on issues like "no response" and incorrect context summaries.
+- Ongoing refactoring of core systems like the channel implementation.
 
 </details>
 
@@ -159,9 +158,9 @@ None
 <summary><strong>NanoClaw</strong> — <a href="https://github.com/qwibitai/nanoclaw">qwibitai/nanoclaw</a></summary>
 
 ### Highlights
-- **New Messaging Channel Integration:** Efforts are underway to add Signal as a messaging channel, mirroring existing integrations like Telegram and Slack.
-- **Third-Party API Compatibility:** A fix is being developed to ensure compatibility with third-party Anthropic-compatible APIs, addressing "Not logged in" errors.
-- **Setup and Configuration Improvements:** Several PRs focus on refining the `/setup` process, addressing issues like WhatsApp sync failures and Docker permission problems.
+- Focus on enhancing channel integrations with Signal and Mattermost.
+- Several PRs address critical WhatsApp connectivity and stability issues.
+- Work is underway to improve AI provider compatibility and setup process robustness.
 
 ### Releases
 None
@@ -169,43 +168,38 @@ None
 ### Hot Issues
 | # | Title | 💬 | 👍 | Why it matters |
 |---|---|---|---|---|
-| #29 | feat: Add Signal as messaging channel | 3 | 0 | Expands communication channel options for users. |
-| #342 | feat: readSecrets() support for third-party Anthropic-compatible API environment variables | 1 | 0 | Fixes integration with alternative LLM providers. |
-| #526 | Agent is repeatedly confused about the local time | 0 | 1 | Impacts agent reliability and task scheduling. |
-| #537 | Issues during /setup | 0 | 0 | Hinders new user onboarding and setup process. |
-| #529 | Message loop fallback causes duplicate messages on fast successive requests | 0 | 0 | Leads to redundant agent responses and user confusion. |
-| #527 | Main group CLAUDE.md documents write access to read-only paths | 0 | 0 | Prevents agents from modifying workspace files correctly. |
-| #520 | Proposal: Optional BoxLite sandbox backend (experimental) | 0 | 0 | Offers an additional isolation option for container execution. |
+| #29 | [enhancement] feat: Add Signal as messaging channel | 3 | 0 | Expanding communication channels to include Signal. |
+| #342 | feat: readSecrets() support for third-party Anthropic-compatible API environment variables | 1 | 0 | Enables use of alternative LLM providers like ZAI and Kimi. |
+| #553 | Container execution fails after WhatsApp connection recovery | 0 | 0 | Critical bug impacting container execution after WhatsApp disconnects. |
+| #537 | Issues during /setup | 0 | 0 | Setup issues hindering new user onboarding. |
 
 ### Key PRs
 | # | Title | Status | What it does |
 |---|---|---|---|
-| #412 | feat(setup): add host machine authorization passthrough | OPEN | Adds host machine auth as setup option. |
-| #424 | fix(add-telegram): add state/code mismatch detection to SKILL.md | OPEN | Improves Telegram skill reliability. |
-| #488 | fix(add-discord): add state/code mismatch detection to SKILL.md | OPEN | Enhances Discord skill stability. |
-| #512 | feat(setup): detect docker permission issues and prompt user for group fix | OPEN | Fixes Docker permission issues during setup. |
-| #551 | Fix Rollup CVE via npm audit fix | OPEN | Patches security vulnerability in Rollup dependency. |
-| #510 | skill: add /add-image-sending | OPEN | Enables agents to send images. |
-| #550 | fix(agent-runner): break for-await loop after result to unblock IPC handling | OPEN | Resolves issue with blocked IPC handling. |
-| #549 | feat: add /use-avian skill for Avian LLM provider | OPEN | Adds support for Avian LLM provider. |
+| #491 | fix: filter protocol messages before processing in WhatsApp handler | OPEN | Reduces unnecessary processing of system messages in WhatsApp. |
+| #466 | fix: add exponential backoff to WhatsApp reconnect loop | OPEN | Prevents infinite loops during WhatsApp connection failures. |
+| #499 | Add Signal as a channel via signal-cli daemon (TCP JSON-RPC). | OPEN | Integrates Signal as a communication channel. |
+| #412 | feat(setup): add host machine authorization passthrough | OPEN | Simplifies setup with host machine auth reuse. |
+| #424 | fix(add-telegram): add state/code mismatch detection to SKILL.md | OPEN | Improves robustness and error detection for Telegram setup skill. |
+| #488 | fix(add-discord): add state/code mismatch detection to SKILL.md | OPEN | Enhances error detection for Discord setup skill sync issues. |
+| #512 | feat(setup): detect docker permission issues and prompt user for group fix | OPEN | Improves Docker setup by handling permission errors. |
+| #552 | Test PR from Enzo | CLOSED | Test pull request, safely closed. |
 
 ### Bugs
 | # | Title | Severity | Fix PR? |
 |---|---|---|---|
-| #529 | Message loop fallback causes duplicate messages on fast successive requests | high | No |
-| #527 | Main group CLAUDE.md documents write access to read-only paths | medium | No |
-| #526 | Agent is repeatedly confused about the local time | medium | No |
-| #537 | Issues during /setup | medium | No |
+| #553 | Container execution fails after WhatsApp connection recovery | critical | No |
 | #342 | feat: readSecrets() support for third-party Anthropic-compatible API environment variables | medium | No |
+| #537 | Issues during /setup | medium | No |
 
 ### Trends
-- Active development on adding Signal as a new communication channel.
-- Ongoing work to improve compatibility with various LLM providers.
-- Multiple PRs addressing bugs and usability issues within the `/setup` process.
-- Refinements to existing channel integrations like Telegram and Discord to prevent silent failures.
-- Exploration of new sandbox options like BoxLite for enhanced isolation.
-- Attention to agent reliability regarding time zone confusion and message handling.
-- Security patches for dependencies like Rollup are being integrated.
+- Increasing demand for new communication channel integrations (Signal, Mattermost, iMessage).
+- Ongoing effort to stabilize and improve WhatsApp connectivity and recovery.
+- Need for broader compatibility with third-party Anthropic-compatible LLM APIs.
+- Improving the user setup experience and detecting/resolving common setup issues.
+- Enhancing agent capabilities with features like image sending.
+- Addressing potential security vulnerabilities through dependency updates.
+- Implementing more robust error handling and failure recovery mechanisms.
 
 </details>
 
