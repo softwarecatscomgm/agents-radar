@@ -76,6 +76,13 @@ function requireEnv(name: string): string {
   return value;
 }
 
+function parseIssueFlags(raw: string): Set<string> {
+  const trimmed = raw.trim().toLowerCase();
+  if (!trimmed || trimmed === "none") return new Set();
+  if (trimmed === "all") return new Set(["web", "cli", "agents"]);
+  return new Set(trimmed.split(",").map(s => s.trim()).filter(s => ["web", "cli", "agents"].includes(s)));
+}
+
 // ---------------------------------------------------------------------------
 // Main
 // ---------------------------------------------------------------------------
@@ -89,6 +96,7 @@ async function main(): Promise<void> {
   const dateStr = new Date(now.getTime() + 8 * 60 * 60 * 1000).toISOString().slice(0, 10);
   const utcStr  = now.toISOString().slice(0, 16).replace("T", " ");
   const digestRepo = process.env["DIGEST_REPO"] ?? "";
+  const issueFlags = parseIssueFlags(process.env["AR_ISSUES"] ?? "");
 
   const baseUrl = process.env["ANTHROPIC_BASE_URL"] ?? "api.anthropic.com";
   console.log(`[${now.toISOString()}] Starting digest | endpoint: ${baseUrl}`);
@@ -321,7 +329,7 @@ async function main(): Promise<void> {
       webReportPath = saveFile(webContent, dateStr, "ai-web.md");
       console.log(`  Saved ${webReportPath}`);
 
-      if (digestRepo) {
+      if (digestRepo && issueFlags.has("web")) {
         const webUrl = await createGitHubIssue(
           `🌐 AI Official Content Tracker ${dateStr}${isFirstRun ? " (first-run full crawl)" : ""}`,
           webContent,
@@ -342,10 +350,12 @@ async function main(): Promise<void> {
 
   // ── 7. Create GitHub issues (CLI + OpenClaw) ────────────────────────────────
 
-  if (digestRepo) {
+  if (digestRepo && issueFlags.has("cli")) {
     const cliUrl = await createGitHubIssue(`📊 AI CLI Tools Community Digest ${dateStr}`, digestContent, "digest");
     console.log(`  Created CLI issue: ${cliUrl}`);
+  }
 
+  if (digestRepo && issueFlags.has("agents")) {
     const openclawUrl = await createGitHubIssue(`🦞 OpenClaw Ecosystem Digest ${dateStr}`, openclawContent, "openclaw");
     console.log(`  Created OpenClaw issue: ${openclawUrl}`);
   }
