@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "WebSearch",
+      "Bash(npx tsc:*)",
+      "Bash(gh run:*)",
+      "Bash(gh workflow:*)",
+      "Bash(git push:*)"
+    ]
+  }
+}
