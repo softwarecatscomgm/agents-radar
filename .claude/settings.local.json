@@ -6,7 +6,8 @@
       "Bash(gh run:*)",
       "Bash(gh workflow:*)",
       "Bash(git push:*)",
-      "Bash(npm version:*)"
+      "Bash(npm version:*)",
+      "Bash(git pull:*)"
     ]
   }
 }
