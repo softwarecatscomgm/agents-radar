@@ -6,7 +6,8 @@
   "scripts": {
     "start": "tsx src/index.ts",
     "typecheck": "tsc --noEmit",
-    "postversion": "git push --follow-tags"
+    "postversion": "git push --follow-tags",
+    "trigger": "gh workflow run \"Daily Agents Radar\""
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.36.3"
