@@ -75,31 +75,43 @@ export function buildCliPrompt(
   const issueNote = sampleNote(issues.length, sampledIssues.length, "issues");
   const prNote    = sampleNote(prs.length,    sampledPrs.length,    "prs");
 
-  return `You are a technical analyst focused on AI developer tools. Based on the following GitHub data, generate a ${cfg.name} community digest for ${dateStr}.
+  return `You are a technical analyst. Generate a dense, scannable ${cfg.name} digest for ${dateStr} from the data below.
 
-# Data source: github.com/${cfg.repo}
+# Data: github.com/${cfg.repo}
 
-## Latest Releases (past 24 hours)
+## Releases (past 24h)
 ${releasesText}
 
-## Latest Issues (updated in the past 24 hours) ${issueNote}
+## Issues (past 24h) ${issueNote}
 ${issuesText}
 
-## Latest Pull Requests (updated in the past 24 hours) ${prNote}
+## PRs (past 24h) ${prNote}
 ${prsText}
 
 ---
 
-Please generate a well-structured English digest covering the following sections:
+Output these sections in **exactly** this format. No intro text, no filler.
 
-1. **Today's Highlights** - Summarize the most important developments in 2-3 sentences
-2. **Releases** - If new versions were published, summarize the changes; omit if none
-3. **Hot Community Issues** - Pick the 10 most noteworthy Issues, explain why they matter and how the community is responding
-4. **Important PR Progress** - Pick 10 significant PRs, describe the feature or fix
-5. **Feature Request Trends** - Distill the most frequently requested feature directions from all Issues (e.g. IDE integration, performance, new model support)
-6. **Developer Pain Points** - Summarize recurring complaints or high-frequency requests from developer feedback
+### Highlights
+- (2-3 bullet points, one sentence each, most important developments only)
 
-Writing style: concise and professional, suitable for technical developers. Include a GitHub link for each item.
+### Releases
+(Version + one-line summary each. Omit section if none.)
+
+### Hot Issues
+| # | Title | 💬 | 👍 | Why it matters |
+|---|-------|----|----|----------------|
+(Top 8 by engagement. "Why it matters" must be ≤15 words.)
+
+### Key PRs
+| # | Title | Status | What it does |
+|---|-------|--------|--------------|
+(Top 8 by significance. "What it does" must be ≤15 words.)
+
+### Trends
+- (5-7 bullet points combining feature requests and recurring pain points. One line each. Tag each as [feature] or [pain].)
+
+Rules: No prose paragraphs. No "why the community is responding" essays. Every line earns its place with signal, not volume. Include GitHub links in issue/PR numbers.
 `;
 }
 
@@ -139,36 +151,51 @@ export function buildPeerPrompt(
     ? `(${totalPrs} total; showing top ${sampledPrs.length} by comment count)`
     : `(${totalPrs} total)`;
 
-  return `You are an open-source project analyst specializing in AI agents and personal AI assistants. Based on the following GitHub data from ${cfg.name} (github.com/${cfg.repo}), generate a project digest for ${dateStr}.
+  return `You are a project analyst. Generate a dense, scannable ${cfg.name} digest for ${dateStr}.
 
-# Data Overview
-- Issues updated in the past 24 hours: ${totalIssues} (open/active: ${openIssues}, closed: ${closedIssues})
-- PRs updated in the past 24 hours: ${totalPrs} (open: ${openPrs}, merged/closed: ${mergedPrs})
-- New releases: ${releases.length}
+# Stats
+- Issues (24h): ${totalIssues} (open: ${openIssues}, closed: ${closedIssues})
+- PRs (24h): ${totalPrs} (open: ${openPrs}, merged/closed: ${mergedPrs})
+- Releases: ${releases.length}
 
-## Latest Releases
+## Releases
 ${releasesText}
 
-## Latest Issues ${issueSampleNote}
+## Issues ${issueSampleNote}
 ${issuesText}
 
-## Latest Pull Requests ${prSampleNote}
+## PRs ${prSampleNote}
 ${prsText}
 
 ---
 
-Please generate a well-structured ${cfg.name} project digest covering the following sections:
+Output these sections in **exactly** this format. No intro text, no filler.
 
-1. **Today's Highlights** - Summarize the project's overall status in 3-5 sentences, including an activity assessment
-2. **Releases** - If new versions were published, detail the changes, breaking changes, and migration notes; omit if none
-3. **Project Progress** - Important PRs merged/closed today; what features or fixes were advanced; overall project momentum
-4. **Community Hot Topics** - The most active, most-commented, most-reacted Issues/PRs today (with links); analyze the underlying needs
-5. **Bugs & Stability** - Bugs, crashes, and regressions reported today, ordered by severity; note whether a fix PR exists
-6. **Feature Requests & Roadmap Signals** - New feature requests from users; assess which are likely to make it into the next release based on existing PRs
-7. **User Feedback Summary** - Distill real user pain points, use cases, and satisfaction levels from Issue comments
-8. **Backlog Watch** - Long-unresponsive important Issues or PRs; flags for maintainers
+### Highlights
+- (2-3 bullet points, one sentence each)
 
-Writing style: objective and professional, data-driven, highlighting project health. Include a GitHub link for each item.
+### Releases
+(Version + one-line summary. Omit section if none.)
+
+### Hot Issues
+| # | Title | 💬 | 👍 | Why it matters |
+|---|-------|----|----|----------------|
+(Top 8. "Why it matters" ≤15 words.)
+
+### Key PRs
+| # | Title | Status | What it does |
+|---|-------|--------|--------------|
+(Top 8. "What it does" ≤15 words.)
+
+### Bugs
+| # | Title | Severity | Fix PR? |
+|---|-------|----------|---------|
+(Top 5 bugs/crashes/regressions. Severity: critical/high/medium.)
+
+### Trends
+- (5-7 bullets combining feature requests and pain points. One line each.)
+
+Rules: No prose paragraphs. No essays. Keep it scannable. Include GitHub links in issue/PR numbers.
 `;
 }
 
@@ -188,7 +215,7 @@ export function buildPeersComparisonPrompt(
     })
     .join("\n\n---\n\n");
 
-  return `You are a senior technical analyst specializing in the open-source ecosystem for AI agents and personal AI assistants. Below are community activity summaries for each open-source project as of ${dateStr}.
+  return `You are a technical analyst. Generate a dense cross-project comparison for ${dateStr}.
 
 ${openclawSection}
 
@@ -198,17 +225,26 @@ ${peerSections}
 
 ---
 
-Based on the above, generate a cross-project comparative analysis covering the following sections:
+Output these sections in **exactly** this format. No intro text, no filler.
 
-1. **Ecosystem Overview** - Summarize the overall landscape of personal AI assistant / autonomous agent open-source projects in 3-5 sentences
-2. **Activity Comparison** - Summarize each project's Issues count, PR count, releases, and health assessment in a table
-3. **OpenClaw's Position in the Ecosystem** - Advantages vs. peers, technical roadmap differences, community size comparison
-4. **Shared Technical Directions** - Common needs emerging across multiple projects (note which projects and the specific requests)
-5. **Differentiation Analysis** - Key differences in feature focus, target users, and technical architecture
-6. **Community Momentum & Maturity** - Activity tiers: which projects are in rapid iteration, which are in quality consolidation
-7. **Notable Trend Signals** - Distill industry trends from community feedback; what's relevant for AI agent developers
+### Ecosystem Snapshot
+(2-3 sentences max on the overall landscape.)
 
-Writing style: concise and professional, data-supported, suitable for technical decision-makers and developers.
+### Activity
+| Project | Issues | PRs | Releases | Momentum |
+|---------|--------|-----|----------|----------|
+(One row per project. Momentum: 🔴 slow / 🟡 steady / 🟢 rapid.)
+
+### OpenClaw vs Peers
+- (3-5 bullets: advantages, gaps, and roadmap differences)
+
+### Shared Directions
+- (4-6 bullets: common needs across projects. Tag which projects in parentheses.)
+
+### Trend Signals
+- (3-5 bullets: industry-level trends emerging from community data)
+
+Rules: No prose paragraphs. No redundant sections. Bullets and tables only.
 `;
 }
 
@@ -223,27 +259,35 @@ export function buildSkillsPrompt(
   const prsText    = topPrs.map(formatItem).join("\n") || "None";
   const issuesText = topIssues.map(formatItem).join("\n") || "None";
 
-  return `You are a technical analyst focused on the Claude Code ecosystem. Below is data from github.com/anthropics/skills (the official Claude Code Skills repository). Please analyze the community's most discussed Skills activity as of ${dateStr}.
+  return `You are a technical analyst. Generate a dense Claude Code Skills digest for ${dateStr}.
 
-## Repository Overview
-anthropics/skills is the official Claude Code Skills collection. Each PR typically corresponds to a new or improved Skill. The community uses Issues to request new Skills or report problems; PRs represent actual Skill submissions.
+Data: github.com/anthropics/skills (official Skills repo. PRs = skill submissions, Issues = requests/bugs.)
 
-## Trending Pull Requests (sorted by comment count; ${prs.length} total, showing top ${topPrs.length})
+## Trending PRs (${prs.length} total, top ${topPrs.length})
 ${prsText}
 
-## Community Issues (sorted by comment count; ${issues.length} total, showing top ${topIssues.length})
+## Issues (${issues.length} total, top ${topIssues.length})
 ${issuesText}
 
 ---
 
-Please generate a Claude Code Skills community highlights report covering the following sections:
+Output these sections in **exactly** this format. No intro text, no filler.
 
-1. **Top Skills Ranking** - List the 5–8 most-discussed Skills (PRs) by comment/engagement; describe each Skill's purpose, key discussion points, and current status (open/merged/draft)
-2. **Community Demand Trends** - Distill the most anticipated new Skill directions from Issues (e.g. workflow automation, code review, test generation, documentation)
-3. **High-Potential Pending Skills** - Actively discussed PRs not yet merged; these Skills may land soon
-4. **Skills Ecosystem Insight** - One-sentence summary: what is the community's most concentrated ask at the Skills layer right now?
+### Top Skills
+| # | Skill Name | 💬 | Status | Purpose (≤15 words) |
+|---|-----------|-----|--------|---------------------|
+(Top 6 PRs by engagement.)
 
-Writing style: concise and professional; include a GitHub link for each item.
+### Demand Trends
+- (4-6 bullets: most anticipated skill directions from Issues. One line each.)
+
+### Pending Skills
+- (3-5 bullets: actively discussed unmerged PRs likely to land soon. Link + one-liner.)
+
+### TL;DR
+(One sentence: the community's top ask at the Skills layer right now.)
+
+Rules: No prose. No essays. Tables and bullets only. Include GitHub links.
 `;
 }
 
@@ -256,22 +300,34 @@ export function buildComparisonPrompt(digests: RepoDigest[], dateStr: string): s
     })
     .join("\n\n---\n\n");
 
-  return `You are a senior technical analyst focused on the AI developer tools ecosystem. Below are community activity summaries for major AI CLI tools as of ${dateStr}:
+  return `You are a technical analyst. Generate a dense cross-tool comparison for AI CLI tools as of ${dateStr}.
 
 ${sections}
 
 ---
 
-Based on the above, generate a cross-tool comparative analysis covering the following sections:
+Output these sections in **exactly** this format. No intro text, no filler.
 
-1. **Ecosystem Overview** - Summarize the current state of AI CLI tools in 3-5 sentences
-2. **Activity Comparison** - Summarize each tool's Issues count, PR count, and releases for today in a table
-3. **Shared Feature Directions** - Needs that communities across multiple tools are focused on (note which tools and the specific requests)
-4. **Differentiation Analysis** - Differences in feature focus, target users, and technical approach across tools
-5. **Community Momentum & Maturity** - Which tool communities are most active; which are in rapid iteration
-6. **Notable Trend Signals** - Industry trends distilled from community feedback; what's useful for developers
+### Ecosystem Snapshot
+(2-3 sentences max.)
 
-Writing style: concise and professional, data-supported, suitable for technical decision-makers and developers.
+### Activity
+| Tool | Issues | PRs | Releases | Momentum |
+|------|--------|-----|----------|----------|
+(One row per tool. Momentum: 🔴 slow / 🟡 steady / 🟢 rapid.)
+
+### Shared Directions
+- (4-6 bullets: common needs across tools. Tag which tools in parentheses.)
+
+### Differentiation
+| Tool | Focus | Target Users | Approach |
+|------|-------|-------------|----------|
+(One row per tool. Keep cells ≤10 words.)
+
+### Trend Signals
+- (3-5 bullets: industry trends from community data)
+
+Rules: No prose paragraphs. Tables and bullets only.
 `;
 }
 
@@ -304,35 +360,32 @@ export function buildWebReportPrompt(results: WebFetchResult[], dateStr: string)
     ? "This is the first full crawl. Please focus on mapping the content landscape, historical arc, and core themes of each site rather than individual articles."
     : "This is an incremental update. Please focus on today's new content and assess its strategic significance in context.";
 
-  return `You are a deep-content analyst specializing in AI, skilled at extracting strategic signals from official announcements, technical blogs, research papers, and product documentation.
+  return `You are a content analyst. Generate a dense AI content tracker report for ${dateStr}.
 
-Below is content crawled on ${dateStr} from Anthropic (claude.com / anthropic.com) and OpenAI (openai.com). ${firstRunNote}
+${firstRunNote}
 
 ${siteSections}
 
 ---
 
-Please generate a comprehensive **AI Official Content Tracker Report** covering the following sections:
+Output these sections in **exactly** this format. No intro text, no filler.
 
-1. **Today's Highlights** — 3–5 sentences summarizing the most important new releases or developments; call out the key takeaways
+### Highlights
+- (3-4 bullet points: most important new content across both companies. One sentence each.)
 
-2. **Anthropic / Claude Content Highlights** — Organize important content by category (news / research / engineering / learn, etc.):
-   - Summarize each piece in 2–4 sentences covering core ideas, technical details, or business significance
-   - Note the publication date and link to the original
-   - If this is a first-run crawl, organize notable milestones chronologically
+### Anthropic
+| Title | Category | Date | Key takeaway (≤15 words) |
+|-------|----------|------|--------------------------|
+(All new articles. Include link in title. Write "No new content" if none.)
 
-3. **OpenAI Content Highlights** — Same format as above, organized by category (research / release / company / safety, etc.)
+### OpenAI
+| Title | Category | Date | Key takeaway (≤15 words) |
+|-------|----------|------|--------------------------|
+(All new articles. Include link in title. Group duplicates into one row.)
 
-4. **Strategic Signal Analysis** — Based on both companies' publishing cadence and content focus, analyze:
-   - Each company's current technical priorities (model capability / safety / productization / ecosystem)
-   - Competitive dynamics: who is setting the agenda, who is following
-   - Potential implications for developers and enterprise users
+### Signals
+- (3-5 bullets: strategic signals from publishing patterns, new terms, theme clusters, competitive moves)
 
-5. **Details Worth Watching** — Extract implicit signals from titles, phrasing, and release timing, such as:
-   - First appearances of new terms or topics
-   - Dense publishing around a theme (may signal an upcoming product milestone)
-   - Policy, compliance, or safety developments
-
-${isAnyFirstRun ? "6. **Content Landscape Overview** — First-run exclusive: summarize the volume and distribution of content by category for each company, and describe their content strategy (academic-oriented vs. product-oriented vs. user-story-focused, etc.)\n\n" : ""}Writing style: English, professional and in-depth, suitable for AI researchers, product managers, and technical decision-makers. Every item must include a link to the original source.
+${isAnyFirstRun ? "### Content Landscape\n(First-run only: 3-4 bullets on volume, category distribution, and content strategy per company.)\n\n" : ""}Rules: No prose paragraphs. No per-article essays. Tables and bullets only. Every item must link to source.
 `;
 }
