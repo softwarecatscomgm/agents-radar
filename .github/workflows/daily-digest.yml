@@ -38,9 +38,10 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           ANTHROPIC_BASE_URL: ${{ vars.ANTHROPIC_BASE_URL }}
           ANTHROPIC_AUTH_TOKEN: ${{ secrets.ANTHROPIC_AUTH_TOKEN }}
-          #ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           ANTHROPIC_MODEL: ${{ vars.ANTHROPIC_MODEL }}
           DIGEST_REPO: ${{ github.repository }}
+          AR_ISSUES: ${{ vars.AR_ISSUES }}
         run: |
           #export ANTHROPIC_API_KEY="$ANTHROPIC_API_KEY"
           echo ANTHROPIC_BASE_URL="'$ANTHROPIC_BASE_URL'"
@@ -48,6 +49,8 @@ jobs:
           echo ANTHROPIC_API_KEY="'$ANTHROPIC_API_KEY'"
           echo ANTHROPIC_MODEL="'$ANTHROPIC_MODEL'"
           echo DIGEST_REPO="'$DIGEST_REPO'"
+          echo AR_ISSUES="'$AR_ISSUES'"
+          unset ANTHROPIC_API_KEY
           pnpm start
 
       - name: Commit digest files
